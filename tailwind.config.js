@@ -20,20 +20,20 @@ const config = {
     darkMode: "class",
     plugins: [
         heroui({
-            themes: {
-                light: {
-                    colors: {
-                        background: "lightgray",
-                        foreground: "green",
-                    },
-                },
-                dark: {
-                    colors: {
-                        background: "#2e47d5",
-                        foreground: "#fafafa",
-                    },
-                },
-            },
+            // themes: {
+            //     light: {
+            //         colors: {
+            //             background: "lightgray",
+            //             foreground: "green",
+            //         },
+            //     },
+            //     dark: {
+            //         colors: {
+            //             background: "#2e47d5",
+            //             foreground: "#fafafa",
+            //         },
+            //     },
+            // },
         }),],
 }
 
