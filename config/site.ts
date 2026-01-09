@@ -257,7 +257,8 @@ export const siteConfig = {
             "профессиональный массаж",
             "массаж Крым",
             "ул. Беспалова массаж"
-        ]
+        ],
+        ogImage: "/images/about-bg.jpg"
     }
 };
 
