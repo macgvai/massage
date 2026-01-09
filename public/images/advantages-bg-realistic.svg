@@ -1,0 +1,82 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="spaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f8f0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e8f5e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d5ead5;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="spaLight" cx="50%" cy="20%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="bamboo" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8fbc8f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#556b2f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Фон спа -->
+  <rect width="1920" height="1080" fill="url(#spaBg)"/>
+  
+  <!-- Мягкое освещение -->
+  <ellipse cx="960" cy="200" rx="900" ry="300" fill="url(#spaLight)"/>
+  
+  <!-- Пол -->
+  <rect x="0" y="850" width="1920" height="230" fill="#c8d8c8" opacity="0.4"/>
+  
+  <!-- Бамбуковые растения -->
+  <rect x="100" y="400" width="15" height="400" fill="url(#bamboo)"/>
+  <rect x="120" y="350" width="12" height="450" fill="url(#bamboo)"/>
+  <rect x="135" y="380" width="10" height="420" fill="url(#bamboo)"/>
+  
+  <rect x="1780" y="420" width="15" height="380" fill="url(#bamboo)"/>
+  <rect x="1800" y="370" width="12" height="430" fill="url(#bamboo)"/>
+  <rect x="1815" y="400" width="10" height="400" fill="url(#bamboo)"/>
+  
+  <!-- Листья бамбука -->
+  <ellipse cx="110" cy="380" rx="25" ry="8" fill="#9acd32" opacity="0.8"/>
+  <ellipse cx="125" cy="340" rx="20" ry="6" fill="#9acd32" opacity="0.8"/>
+  <ellipse cx="140" cy="370" rx="18" ry="5" fill="#9acd32" opacity="0.8"/>
+  
+  <ellipse cx="1790" cy="400" rx="25" ry="8" fill="#9acd32" opacity="0.8"/>
+  <ellipse cx="1805" cy="360" rx="20" ry="6" fill="#9acd32" opacity="0.8"/>
+  <ellipse cx="1820" cy="390" rx="18" ry="5" fill="#9acd32" opacity="0.8"/>
+  
+  <!-- Камни для спа -->
+  <ellipse cx="400" cy="750" rx="40" ry="20" fill="#708090"/>
+  <ellipse cx="450" cy="760" rx="35" ry="18" fill="#778899"/>
+  <ellipse cx="480" cy="740" rx="30" ry="15" fill="#696969"/>
+  
+  <ellipse cx="1450" cy="770" rx="38" ry="19" fill="#708090"/>
+  <ellipse cx="1500" cy="750" rx="32" ry="16" fill="#778899"/>
+  <ellipse cx="1520" cy="780" rx="28" ry="14" fill="#696969"/>
+  
+  <!-- Свечи -->
+  <rect x="350" y="680" width="12" height="40" fill="#f5deb3"/>
+  <ellipse cx="356" cy="675" rx="8" ry="4" fill="#ffa500" opacity="0.9"/>
+  <rect x="500" y="670" width="10" height="45" fill="#f5deb3"/>
+  <ellipse cx="505" cy="665" rx="7" ry="3" fill="#ffa500" opacity="0.9"/>
+  
+  <rect x="1400" y="690" width="12" height="38" fill="#f5deb3"/>
+  <ellipse cx="1406" cy="685" rx="8" ry="4" fill="#ffa500" opacity="0.9"/>
+  <rect x="1550" y="680" width="10" height="42" fill="#f5deb3"/>
+  <ellipse cx="1555" cy="675" rx="7" ry="3" fill="#ffa500" opacity="0.9"/>
+  
+  <!-- Полотенца -->
+  <rect x="700" y="720" width="100" height="15" rx="7" fill="#e6e6fa"/>
+  <rect x="705" y="705" width="90" height="15" rx="7" fill="#dda0dd"/>
+  <rect x="1120" y="730" width="100" height="15" rx="7" fill="#e6e6fa"/>
+  <rect x="1125" y="715" width="90" height="15" rx="7" fill="#dda0dd"/>
+  
+  <!-- Декоративные элементы -->
+  <circle cx="200" cy="300" r="20" fill="#20b2aa" opacity="0.3"/>
+  <circle cx="1720" cy="280" r="25" fill="#20b2aa" opacity="0.3"/>
+  <circle cx="960" cy="200" r="15" fill="#48d1cc" opacity="0.4"/>
+  
+  <!-- Текст -->
+  <rect x="660" y="180" width="600" height="140" rx="25" fill="rgba(255,255,255,0.15)" stroke="rgba(32,178,170,0.4)" stroke-width="2"/>
+  <text x="960" y="220" text-anchor="middle" fill="rgba(47,79,79,0.9)" font-family="serif" font-size="32" font-weight="bold">Велнес-центр</text>
+  <text x="960" y="255" text-anchor="middle" fill="rgba(47,79,79,0.9)" font-family="serif" font-size="32" font-weight="bold">премиум класса</text>
+  <text x="960" y="285" text-anchor="middle" fill="rgba(47,79,79,0.7)" font-family="Arial, sans-serif" font-size="18">Гармония тела и души</text>
+  <text x="960" y="305" text-anchor="middle" fill="rgba(47,79,79,0.7)" font-family="Arial, sans-serif" font-size="16">Натуральные материалы • Расслабляющая атмосфера</text>
+</svg>

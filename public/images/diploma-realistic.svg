@@ -1,0 +1,68 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="paperBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fefefe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8f8f8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Фон диплома -->
+  <rect width="800" height="600" fill="url(#paperBg)" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Декоративная рамка -->
+  <rect x="20" y="20" width="760" height="560" rx="15" fill="none" stroke="url(#border)" stroke-width="8"/>
+  <rect x="35" y="35" width="730" height="530" rx="10" fill="none" stroke="url(#border)" stroke-width="2"/>
+  
+  <!-- Декоративные углы -->
+  <circle cx="60" cy="60" r="15" fill="url(#border)" opacity="0.3"/>
+  <circle cx="740" cy="60" r="15" fill="url(#border)" opacity="0.3"/>
+  <circle cx="60" cy="540" r="15" fill="url(#border)" opacity="0.3"/>
+  <circle cx="740" cy="540" r="15" fill="url(#border)" opacity="0.3"/>
+  
+  <!-- Заголовок -->
+  <rect x="150" y="80" width="500" height="80" fill="rgba(212,175,55,0.1)" rx="10"/>
+  <text x="400" y="110" text-anchor="middle" fill="#2c3e50" font-family="serif" font-size="32" font-weight="bold">ДИПЛОМ</text>
+  <text x="400" y="140" text-anchor="middle" fill="#34495e" font-family="serif" font-size="18">о профессиональной переподготовке</text>
+  
+  <!-- Основной текст -->
+  <text x="400" y="200" text-anchor="middle" fill="#2c3e50" font-family="Arial, sans-serif" font-size="16">Настоящий диплом выдан</text>
+  
+  <!-- Имя -->
+  <rect x="200" y="220" width="400" height="40" fill="rgba(212,175,55,0.1)" rx="5"/>
+  <text x="400" y="245" text-anchor="middle" fill="#2c3e50" font-family="serif" font-size="24" font-weight="bold">Андрею Васкесу</text>
+  
+  <text x="400" y="290" text-anchor="middle" fill="#2c3e50" font-family="Arial, sans-serif" font-size="16">в том, что он успешно прошел курс обучения по программе</text>
+  
+  <!-- Специальность -->
+  <rect x="150" y="310" width="500" height="50" fill="rgba(212,175,55,0.1)" rx="8"/>
+  <text x="400" y="330" text-anchor="middle" fill="#2c3e50" font-family="serif" font-size="20" font-weight="bold">"Массаж и массажные техники"</text>
+  <text x="400" y="350" text-anchor="middle" fill="#2c3e50" font-family="serif" font-size="18" font-weight="bold">Лечебный и оздоровительный массаж</text>
+  
+  <!-- Детали -->
+  <text x="400" y="390" text-anchor="middle" fill="#34495e" font-family="Arial, sans-serif" font-size="14">Объем программы: 256 академических часов</text>
+  <text x="400" y="410" text-anchor="middle" fill="#34495e" font-family="Arial, sans-serif" font-size="14">Квалификация: Массажист</text>
+  <text x="400" y="430" text-anchor="middle" fill="#34495e" font-family="Arial, sans-serif" font-size="14">Регистрационный номер: МТ-2024-0156</text>
+  
+  <!-- Дата -->
+  <text x="400" y="470" text-anchor="middle" fill="#34495e" font-family="Arial, sans-serif" font-size="14">Выдан: 15 марта 2024 года</text>
+  
+  <!-- Печать -->
+  <circle cx="180" cy="520" r="40" fill="rgba(212,175,55,0.2)" stroke="url(#border)" stroke-width="3"/>
+  <text x="180" y="515" text-anchor="middle" fill="#b8860b" font-size="10" font-weight="bold">УЧЕБНЫЙ</text>
+  <text x="180" y="525" text-anchor="middle" fill="#b8860b" font-size="10" font-weight="bold">ЦЕНТР</text>
+  <text x="180" y="535" text-anchor="middle" fill="#b8860b" font-size="8">"ЗДОРОВЬЕ"</text>
+  
+  <!-- Подпись -->
+  <rect x="500" y="490" width="200" height="50" fill="none" stroke="#d0d0d0" stroke-width="1" rx="5"/>
+  <text x="600" y="510" text-anchor="middle" fill="#7f8c8d" font-size="12">Директор учебного центра</text>
+  <text x="600" y="530" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">И.В. Петрова</text>
+  
+  <!-- Декоративные элементы -->
+  <path d="M100 180 Q400 160 700 180" stroke="url(#border)" stroke-width="2" fill="none" opacity="0.3"/>
+  <path d="M100 480 Q400 460 700 480" stroke="url(#border)" stroke-width="2" fill="none" opacity="0.3"/>
+</svg>

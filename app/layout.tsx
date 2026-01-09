@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {Providers} from "@/app/providers";
 import {Header} from "@/components/header";
+import { siteConfig } from "@/config/site";
 import React from "react";
 
 const geistSans = Geist({
@@ -16,33 +17,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Массаж в Симферополе — профессиональный массаж и запись онлайн",
-    description:
-        "Профессиональный массаж в Симферополе: классический, релакс, спортивный, антистресс. Онлайн-запись, удобное время, комфортная атмосфера.",
+    title: `${siteConfig.name} — профессиональный массаж и запись онлайн`,
+    description: siteConfig.description,
 
-    keywords: [
-        "массаж",
-        "массаж в Симферополе",
-        "классический массаж",
-        "релакс массаж",
-        "спортивный массаж",
-        "антистресс массаж",
-        "массаж спины",
-        "запись на массаж",
-    ],
+    keywords: siteConfig.seo.keywords,
 
     openGraph: {
-        title: "Профессиональный массаж в Симферополе",
-        description:
-            "Классический, релакс и спортивный массаж. Онлайн-запись и индивидуальный подход.",
+        title: siteConfig.name,
+        description: siteConfig.description,
         url: "https://your-site.ru",
-        siteName: "Массаж в Симферополе",
+        siteName: siteConfig.name,
         images: [
             {
-                url: "/og-image.jpg",
+                url: siteConfig.seo.ogImage,
                 width: 1200,
                 height: 630,
-                alt: "Массаж в Симферополе",
+                alt: siteConfig.name,
             },
         ],
         locale: "ru_RU",
@@ -51,10 +41,9 @@ export const metadata: Metadata = {
 
     twitter: {
         card: "summary_large_image",
-        title: "Массаж в Симферополе — запись онлайн",
-        description:
-            "Профессиональный массаж: расслабление, восстановление, здоровье.",
-        images: ["/og-image.jpg"],
+        title: `${siteConfig.name} — запись онлайн`,
+        description: siteConfig.description,
+        images: [siteConfig.seo.ogImage],
     },
 
     robots: {
@@ -77,8 +66,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <h1 className="visually-hidden">Массаж в Симферополе.</h1>
-      <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+      <h1 className="visually-hidden">{siteConfig.name}</h1>
+      <Providers>
         <Header />
         {children}
       </Providers>

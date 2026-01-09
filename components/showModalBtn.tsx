@@ -1,37 +1,88 @@
 'use client'
 
-import {useState} from "react";
+import { useState } from "react";
 import {
-    Button,
     Modal,
     ModalContent,
     ModalHeader,
     ModalBody,
     ModalFooter,
 } from "@heroui/react";
-import {Input, Textarea} from "@heroui/input";
+import { Button as HeroUIButton } from "@heroui/react";
+import { Input, Textarea } from "@heroui/input";
+import Button from "@/components/ui/Button";
 
-export default function ShowModalBtn({item}) {
+interface Service {
+    title: string;
+    description: string;
+    href: string;
+}
+
+interface FormData {
+    name: string;
+    phone: string;
+    comment: string;
+}
+
+interface ShowModalBtnProps {
+    item: Service;
+    customClassName?: string;
+    customText?: string;
+}
+
+export default function ShowModalBtn({ item, customClassName, customText }: ShowModalBtnProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeService, setActiveService] = useState(null);
-    const [form, setForm] = useState({
+    const [isLoading, setIsLoading] = useState(false);
+    const [form, setForm] = useState<FormData>({
         name: "",
         phone: "",
         comment: "",
     });
 
+    const handleSubmit = async () => {
+        if (!form.name.trim() || !form.phone.trim()) {
+            return; // Можно добавить валидацию с уведомлениями
+        }
+
+        setIsLoading(true);
+        
+        try {
+            await fetch("/api/telegram", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: form.name.trim(),
+                    phone: form.phone.trim(),
+                    comment: form.comment.trim(),
+                    service: item.title,
+                }),
+            });
+
+            // Сброс формы после успешной отправки
+            setForm({ name: "", phone: "", comment: "" });
+            setIsOpen(false);
+        } catch (error) {
+            console.error("Ошибка отправки формы:", error);
+            // Здесь можно добавить уведомление об ошибке
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleClose = () => {
+        setIsOpen(false);
+        setForm({ name: "", phone: "", comment: "" });
+    };
+
     return (
         <>
             <Button
-                color="primary"
-                variant="flat"
-                className="mt-6 w-full"
-                onClick={() => {
-                    setActiveService(item);
-                    setIsOpen(true);
-                }}
+                variant="primary"
+                size="lg"
+                className={customClassName}
+                onClick={() => setIsOpen(true)}
             >
-                Записаться
+                {customText || "Записаться на сеанс"}
             </Button>
 
             <Modal
@@ -39,86 +90,106 @@ export default function ShowModalBtn({item}) {
                 onOpenChange={setIsOpen}
                 placement="center"
                 className="mx-4 sm:mx-0"
+                closeButton
             >
-                <ModalContent
-                    className="
-                      w-full
-                      max-w-sm
-                      sm:max-w-md
-                      rounded-2xl
-                    "
-                >
+                <ModalContent className="w-full max-w-md rounded-3xl">
                     {(onClose) => (
                         <>
-                            <ModalHeader className="text-center">
-                                Запись на услугу
+                            <ModalHeader className="text-center pb-2">
+                                <div>
+                                    <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                                        Запись на сеанс
+                                    </h3>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                                        Заполните форму и мы свяжемся с вами
+                                    </p>
+                                </div>
                             </ModalHeader>
 
+                            <ModalBody className="gap-4 px-6">
+                                {/* Информация об услуге */}
+                                <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-200 dark:border-emerald-800">
+                                    <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-2">
+                                        {item.title}
+                                    </h4>
+                                    <p className="text-sm text-emerald-700 dark:text-emerald-300">
+                                        {item.description}
+                                    </p>
+                                </div>
 
-                            <ModalBody className="gap-4">
-                                <p className="font-medium text-center">
-                                    {activeService?.title}
-                                </p>
+                                {/* Форма */}
+                                <div className="space-y-4">
+                                    <Input
+                                        label="Ваше имя"
+                                        placeholder="Введите ваше имя"
+                                        value={form.name}
+                                        onValueChange={(value) =>
+                                            setForm((prev) => ({ ...prev, name: value }))
+                                        }
+                                        isRequired
+                                        variant="bordered"
+                                        classNames={{
+                                            input: "text-gray-800 dark:text-white",
+                                            inputWrapper: "border-gray-300 dark:border-gray-600"
+                                        }}
+                                    />
 
-                                <p className="text-sm text-foreground/70 text-center">
-                                    {activeService?.description}
-                                </p>
+                                    <Input
+                                        label="Телефон"
+                                        placeholder="+7 (916) 990-53-65"
+                                        type="tel"
+                                        value={form.phone}
+                                        onValueChange={(value) =>
+                                            setForm((prev) => ({ ...prev, phone: value }))
+                                        }
+                                        isRequired
+                                        variant="bordered"
+                                        classNames={{
+                                            input: "text-gray-800 dark:text-white",
+                                            inputWrapper: "border-gray-300 dark:border-gray-600"
+                                        }}
+                                    />
 
-                                <Input
-                                    label="Ваше имя"
-                                    value={form.name}
-                                    onValueChange={(value) =>
-                                        setForm((prev) => ({...prev, name: value}))
-                                    }
-                                />
-
-                                <Input
-                                    label="Телефон"
-                                    type="tel"
-                                    value={form.phone}
-                                    onValueChange={(value) =>
-                                        setForm((prev) => ({...prev, phone: value}))
-                                    }
-                                />
-
-                                <Textarea
-                                    label="Комментарий"
-                                    value={form.comment}
-                                    onValueChange={(value) =>
-                                        setForm((prev) => ({...prev, comment: value}))
-                                    }
-                                />
+                                    <Textarea
+                                        label="Комментарий"
+                                        placeholder="Дополнительные пожелания или вопросы"
+                                        value={form.comment}
+                                        onValueChange={(value) =>
+                                            setForm((prev) => ({ ...prev, comment: value }))
+                                        }
+                                        variant="bordered"
+                                        minRows={3}
+                                        classNames={{
+                                            input: "text-gray-800 dark:text-white",
+                                            inputWrapper: "border-gray-300 dark:border-gray-600"
+                                        }}
+                                    />
+                                </div>
                             </ModalBody>
 
-
-                            <ModalFooter className="flex flex-col sm:flex-row gap-2">
-                                <Button variant="light" onPress={onClose} className="w-full">
-                                    Отмена
-                                </Button>
-                                <Button color="primary" className="w-full"
-                                        onPress={async () => {
-                                            await fetch("/api/telegram", {
-                                                method: "POST",
-                                                headers: {"Content-Type": "application/json"},
-                                                body: JSON.stringify({
-                                                    name: form.name,
-                                                    phone: form.phone,
-                                                    comment: form.comment,
-                                                    service: activeService?.title,
-                                                }),
-                                            });
-
-                                            setIsOpen(false);
-                                        }}
+                            <ModalFooter className="flex flex-col sm:flex-row gap-3 px-6 pb-6">
+                                <HeroUIButton 
+                                    variant="light" 
+                                    onPress={handleClose} 
+                                    className="w-full order-2 sm:order-1"
+                                    isDisabled={isLoading}
                                 >
-                                    Отправить
-                                </Button>
+                                    Отмена
+                                </HeroUIButton>
+                                <HeroUIButton 
+                                    color="primary"
+                                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold order-1 sm:order-2"
+                                    onPress={handleSubmit}
+                                    isLoading={isLoading}
+                                    isDisabled={!form.name.trim() || !form.phone.trim()}
+                                >
+                                    {isLoading ? "Отправляем..." : "Записаться"}
+                                </HeroUIButton>
                             </ModalFooter>
                         </>
                     )}
                 </ModalContent>
             </Modal>
-
         </>
     );
 }

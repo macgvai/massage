@@ -1,12 +1,18 @@
 'use client'
-import {Button} from "@heroui/react";
-import React from "react";
+import About from "@/components/about";
 import Services from "@/components/services";
+import AdvantagesWithImage from "@/components/advantages-with-image";
+import Map from "@/components/map";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black">
+        <About />
         <Services />
+        <AdvantagesWithImage />
+        <Map />
+        <Footer />
     </div>
   );
 }

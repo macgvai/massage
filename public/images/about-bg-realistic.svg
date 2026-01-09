@@ -1,0 +1,60 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="roomBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f6f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8e2d5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tableGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b7355;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6d5a47;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="lightGrad" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#fff8e1;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#fff8e1;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Фон комнаты -->
+  <rect width="1920" height="1080" fill="url(#roomBg)"/>
+  
+  <!-- Мягкое освещение -->
+  <ellipse cx="960" cy="300" rx="800" ry="400" fill="url(#lightGrad)"/>
+  
+  <!-- Пол -->
+  <rect x="0" y="800" width="1920" height="280" fill="#d4c4a8" opacity="0.6"/>
+  
+  <!-- Массажный стол -->
+  <ellipse cx="960" cy="650" rx="200" ry="80" fill="#8b7355" opacity="0.3"/>
+  <rect x="760" y="570" width="400" height="80" rx="40" fill="url(#tableGrad)"/>
+  <rect x="780" y="550" width="360" height="20" rx="10" fill="#a0896f"/>
+  
+  <!-- Ножки стола -->
+  <rect x="800" y="650" width="20" height="100" fill="#6d5a47"/>
+  <rect x="1100" y="650" width="20" height="100" fill="#6d5a47"/>
+  
+  <!-- Полотенца -->
+  <rect x="780" y="540" width="80" height="10" rx="5" fill="#e8dcc6"/>
+  <rect x="1060" y="540" width="80" height="10" rx="5" fill="#e8dcc6"/>
+  
+  <!-- Растения -->
+  <ellipse cx="200" cy="750" rx="40" ry="60" fill="#4a5d23"/>
+  <ellipse cx="200" cy="720" rx="50" ry="40" fill="#6b8e23"/>
+  <ellipse cx="1720" cy="750" rx="35" ry="55" fill="#4a5d23"/>
+  <ellipse cx="1720" cy="725" rx="45" ry="35" fill="#6b8e23"/>
+  
+  <!-- Свечи -->
+  <rect x="300" y="720" width="8" height="30" fill="#f4e4bc"/>
+  <ellipse cx="304" cy="715" rx="6" ry="3" fill="#ff6b35" opacity="0.8"/>
+  <rect x="1600" y="710" width="8" height="35" fill="#f4e4bc"/>
+  <ellipse cx="1604" cy="705" rx="6" ry="3" fill="#ff6b35" opacity="0.8"/>
+  
+  <!-- Декоративные элементы -->
+  <circle cx="150" cy="400" r="30" fill="#d4af37" opacity="0.3"/>
+  <circle cx="1770" cy="350" r="25" fill="#d4af37" opacity="0.3"/>
+  
+  <!-- Текст -->
+  <rect x="660" y="200" width="600" height="120" rx="20" fill="rgba(255,255,255,0.1)" stroke="rgba(139,115,85,0.3)" stroke-width="2"/>
+  <text x="960" y="240" text-anchor="middle" fill="rgba(139,115,85,0.9)" font-family="serif" font-size="28" font-weight="bold">Профессиональный</text>
+  <text x="960" y="270" text-anchor="middle" fill="rgba(139,115,85,0.9)" font-family="serif" font-size="28" font-weight="bold">массажный кабинет</text>
+  <text x="960" y="300" text-anchor="middle" fill="rgba(139,115,85,0.7)" font-family="Arial, sans-serif" font-size="16">Уютная атмосфера для релаксации</text>
+</svg>
