@@ -1,9 +1,43 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { siteConfig } from "@/config/site";
 import ShowModalBtn from "@/components/showModalBtn";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 
 export default function About() {
+    const [currentImages, setCurrentImages] = useState({
+        aboutBg: '/images/about-bg.jpg',
+        diploma: '/images/diploma-realistic.svg',
+        masterPhoto: '/images/master-photo-placeholder.svg'
+    });
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Загружаем актуальные пути к изображениям
+    useEffect(() => {
+        const fetchCurrentImages = async () => {
+            try {
+                const response = await fetch('/api/admin/current-images');
+                const result = await response.json();
+                
+                if (result.success) {
+                    setCurrentImages({
+                        aboutBg: result.images['about-bg'] || '/images/about-bg.jpg',
+                        diploma: result.images.diploma || '/images/diploma-realistic.svg',
+                        masterPhoto: result.images['master-photo'] || '/images/master-photo-placeholder.svg'
+                    });
+                }
+            } catch (error) {
+                console.error('Ошибка при получении текущих изображений:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchCurrentImages();
+    }, []);
+
     const scrollToServices = () => {
         const servicesSection = document.querySelector('#services');
         if (servicesSection) {
@@ -21,15 +55,17 @@ export default function About() {
     return (
         <section id="about" className="relative min-h-screen flex items-center overflow-hidden">
             {/* Фоновое изображение */}
-            <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                    backgroundImage: `url('/images/about-bg.jpg')`
-                }}
-            >
-                {/* Градиентный оверлей */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20"></div>
-            </div>
+            {!isLoading && (
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                        backgroundImage: `url('${currentImages.aboutBg}')`
+                    }}
+                >
+                    {/* Градиентный оверлей */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20"></div>
+                </div>
+            )}
 
             <Container className="relative py-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -103,21 +139,25 @@ export default function About() {
                     <div className="space-y-8">
                         {/* Место для фото мастера */}
                         <div className="relative">
-                            <div className="w-full max-w-md mx-auto aspect-square bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-3xl border-4 border-white/20 shadow-2xl flex items-center justify-center">
-                                <div className="text-center text-gray-600 dark:text-gray-300">
-                                    <div className="w-24 h-24 mx-auto mb-4 bg-emerald-200 dark:bg-emerald-800 rounded-full flex items-center justify-center">
-                                        <svg className="w-12 h-12 text-emerald-600 dark:text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
+                            <div className="w-full max-w-md mx-auto aspect-square bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-3xl border-4 border-white/20 shadow-2xl flex items-center justify-center overflow-hidden">
+                                {!isLoading && currentImages.masterPhoto ? (
+                                    <img 
+                                        src={currentImages.masterPhoto}
+                                        alt="Фото мастера"
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            // Fallback если изображение не загрузится
+                                            const target = e.currentTarget;
+                                            target.src = '/images/master-photo-placeholder.svg';
+                                        }}
+                                    />
+                                ) : (
+                                    <div className="text-center text-gray-500">
+                                        <div className="animate-spin w-8 h-8 border-2 border-gray-300 border-t-emerald-500 rounded-full mx-auto mb-2"></div>
+                                        <p className="text-sm">Загрузка...</p>
                                     </div>
-                                    <p className="text-sm font-medium">Место для фото мастера</p>
-                                    <p className="text-xs opacity-70">400x400px</p>
-                                </div>
+                                )}
                             </div>
-                            
-                            {/* Декоративные элементы вокруг фото */}
-                            <div className="absolute -top-4 -right-4 w-8 h-8 bg-emerald-400 rounded-full animate-bounce"></div>
-                            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-teal-400 rounded-full animate-bounce delay-500"></div>
                         </div>
 
                         {/* Место для диплома */}
@@ -129,18 +169,30 @@ export default function About() {
                                 
                                 {/* Фото диплома */}
                                 <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 flex items-center justify-center">
-                                    <img 
-                                        src="/images/diploma-realistic.svg"
-                                        alt="Диплом и сертификаты массажиста"
-                                        className="w-full h-full object-cover rounded-xl"
-                                        onError={(e) => {
-                                            // Fallback если изображение не загрузится
-                                            const target = e.currentTarget;
-                                            const fallback = target.nextElementSibling as HTMLElement;
-                                            target.style.display = 'none';
-                                            if (fallback) fallback.style.display = 'flex';
-                                        }}
-                                    />
+                                    {!isLoading && currentImages.diploma ? (
+                                        <img 
+                                            src={currentImages.diploma}
+                                            alt="Диплом и сертификаты массажиста"
+                                            className="w-full h-full object-cover rounded-xl"
+                                            onError={(e) => {
+                                                // Если загруженный диплом не найден, показываем SVG fallback
+                                                const target = e.currentTarget;
+                                                if (!target.src.includes('diploma-realistic.svg')) {
+                                                    target.src = '/images/diploma-realistic.svg';
+                                                } else {
+                                                    // Если и SVG не загрузился, показываем fallback
+                                                    target.style.display = 'none';
+                                                    const fallback = target.nextElementSibling as HTMLElement;
+                                                    if (fallback) fallback.style.display = 'flex';
+                                                }
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className="text-center text-gray-500">
+                                            <div className="animate-spin w-8 h-8 border-2 border-gray-300 border-t-emerald-500 rounded-full mx-auto mb-2"></div>
+                                            <p className="text-sm">Загрузка...</p>
+                                        </div>
+                                    )}
                                     {/* Fallback placeholder */}
                                     <div className="w-full h-full bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-dashed border-amber-300 dark:border-amber-700 flex items-center justify-center" style={{display: 'none'}}>
                                         <div className="text-center text-amber-700 dark:text-amber-300">
@@ -150,7 +202,7 @@ export default function About() {
                                                 </svg>
                                             </div>
                                             <p className="text-sm font-medium">Место для диплома</p>
-                                            <p className="text-xs opacity-70">Перетащите изображение сюда</p>
+                                            <p className="text-xs opacity-70">Загрузите через админку</p>
                                         </div>
                                     </div>
                                 </div>

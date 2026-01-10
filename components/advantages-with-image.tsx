@@ -1,21 +1,49 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { siteConfig } from "@/config/site";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Card from "@/components/ui/Card";
 import Container from "@/components/ui/Container";
 
 export default function AdvantagesWithImage() {
+    const [currentBgImage, setCurrentBgImage] = useState('/images/advantages-bg.jpg');
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Загружаем актуальный путь к фоновому изображению
+    useEffect(() => {
+        const fetchCurrentImage = async () => {
+            try {
+                const response = await fetch('/api/admin/current-images');
+                const result = await response.json();
+                
+                if (result.success && result.images['advantages-bg']) {
+                    setCurrentBgImage(result.images['advantages-bg']);
+                }
+            } catch (error) {
+                console.error('Ошибка при получении фонового изображения:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchCurrentImage();
+    }, []);
+
     return (
         <section id="advantages" className="relative py-20 overflow-hidden">
             {/* Фоновое изображение через CSS */}
-            <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                    backgroundImage: `url('/images/advantages-bg.jpg')`
-                }}
-            >
-                {/* Темный оверлей для читаемости текста */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60"></div>
-            </div>
+            {!isLoading && (
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                        backgroundImage: `url('${currentBgImage}')`
+                    }}
+                >
+                    {/* Темный оверлей для читаемости текста */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60"></div>
+                </div>
+            )}
             
             {/* Декоративные элементы */}
             <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>

@@ -96,87 +96,95 @@ export default function Services() {
                 </div>
 
                 {/* Специальные предложения */}
-                <div className="mb-12">
-                    <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-                        🎁 Специальные предложения
-                    </h3>
-                    
-                    {/* Бесплатная консультация */}
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-6 mb-8 border border-blue-200 dark:border-blue-800">
-                        <div className="text-center">
-                            <h4 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-2">
-                                🆓 {siteConfig.specialOffers.consultation.title}
-                            </h4>
-                            <p className="text-blue-700 dark:text-blue-300 mb-4">
-                                {siteConfig.specialOffers.consultation.description}
-                            </p>
-                            <div className="flex items-center justify-center gap-4">
-                                <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                                    Бесплатно
-                                </span>
-                                <span className="text-blue-500 dark:text-blue-400">
-                                    {formatDuration(siteConfig.specialOffers.consultation.duration)}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Пакетные предложения */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {siteConfig.specialOffers.packages.map((packageItem, index) => {
-                            const prices = getPackagePrice(packageItem);
-                            return (
-                                <div 
-                                    key={packageItem.id}
-                                    className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-6 shadow-lg border border-emerald-200 dark:border-emerald-800 relative overflow-hidden"
-                                >
-                                    {/* Бейдж скидки */}
-                                    <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                                        -{prices.discountPercent}
-                                    </div>
-                                    
-                                    <div className="text-center mb-4">
-                                        <h4 className="text-xl font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
-                                            {packageItem.title}
-                                        </h4>
-                                        <p className="text-emerald-700 dark:text-emerald-300 text-sm mb-4">
-                                            {packageItem.description}
-                                        </p>
-                                    </div>
-                                    
-                                    <div className="text-center mb-4">
-                                        <div className="flex items-center justify-center gap-2 mb-2">
-                                            <span className="text-gray-500 dark:text-gray-400 line-through text-lg">
-                                                {prices.original}
-                                            </span>
-                                            <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                                                {prices.discount}
-                                            </span>
-                                        </div>
-                                        <p className="text-emerald-600 dark:text-emerald-400 font-medium">
-                                            Экономия: {prices.savings}
-                                        </p>
-                                        <p className="text-gray-600 dark:text-gray-300 text-sm">
-                                            {packageItem.sessions} сеанса
-                                        </p>
-                                    </div>
-                                    
-                                    <div className="text-center">
-                                        <ShowModalBtn 
-                                            item={{
-                                                title: packageItem.title,
-                                                description: packageItem.description,
-                                                href: `#${packageItem.id}`
-                                            }}
-                                            customClassName="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-                                            customText="Купить пакет"
-                                        />
+                {siteConfig.specialOffers.enabled && (
+                    <div className="mb-12">
+                        <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+                            🎁 Специальные предложения
+                        </h3>
+                        
+                        {/* Бесплатная консультация */}
+                        {siteConfig.specialOffers.consultation.enabled && (
+                            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-6 mb-8 border border-blue-200 dark:border-blue-800">
+                                <div className="text-center">
+                                    <h4 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                                        🆓 {siteConfig.specialOffers.consultation.title}
+                                    </h4>
+                                    <p className="text-blue-700 dark:text-blue-300 mb-4">
+                                        {siteConfig.specialOffers.consultation.description}
+                                    </p>
+                                    <div className="flex items-center justify-center gap-4">
+                                        <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                                            Бесплатно
+                                        </span>
+                                        <span className="text-blue-500 dark:text-blue-400">
+                                            {formatDuration(siteConfig.specialOffers.consultation.duration)}
+                                        </span>
                                     </div>
                                 </div>
-                            );
-                        })}
+                            </div>
+                        )}
+
+                        {/* Пакетные предложения */}
+                        {siteConfig.specialOffers.packages.filter(pkg => pkg.enabled).length > 0 && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {siteConfig.specialOffers.packages
+                                    .filter(packageItem => packageItem.enabled)
+                                    .map((packageItem, index) => {
+                                        const prices = getPackagePrice(packageItem);
+                                        return (
+                                            <div 
+                                                key={packageItem.id}
+                                                className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-6 shadow-lg border border-emerald-200 dark:border-emerald-800 relative overflow-hidden"
+                                            >
+                                                {/* Бейдж скидки */}
+                                                <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                                    -{prices.discountPercent}
+                                                </div>
+                                                
+                                                <div className="text-center mb-4">
+                                                    <h4 className="text-xl font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
+                                                        {packageItem.title}
+                                                    </h4>
+                                                    <p className="text-emerald-700 dark:text-emerald-300 text-sm mb-4">
+                                                        {packageItem.description}
+                                                    </p>
+                                                </div>
+                                                
+                                                <div className="text-center mb-4">
+                                                    <div className="flex items-center justify-center gap-2 mb-2">
+                                                        <span className="text-gray-500 dark:text-gray-400 line-through text-lg">
+                                                            {prices.original}
+                                                        </span>
+                                                        <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                                                            {prices.discount}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-emerald-600 dark:text-emerald-400 font-medium">
+                                                        Экономия: {prices.savings}
+                                                    </p>
+                                                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                                                        {packageItem.sessions} сеанса
+                                                    </p>
+                                                </div>
+                                                
+                                                <div className="text-center">
+                                                    <ShowModalBtn 
+                                                        item={{
+                                                            title: packageItem.title,
+                                                            description: packageItem.description,
+                                                            href: `#${packageItem.id}`
+                                                        }}
+                                                        customClassName="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+                                                        customText="Купить пакет"
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                            </div>
+                        )}
                     </div>
-                </div>
+                )}
 
                 {/* Дополнительная информация */}
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">

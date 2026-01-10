@@ -152,8 +152,7 @@ export const siteConfig = {
                 "title": "Бесплатная консультация",
                 "description": "Консультация по подбору подходящего вида массажа",
                 "duration": 15,
-                "price": 0,
-                "enabled": true
+                "price": 0
         },
         "packages": [
                 {
@@ -165,8 +164,7 @@ export const siteConfig = {
                         "originalPrice": 15000,
                         "discountPrice": 12000,
                         "discount": 20,
-                        "savings": 3000,
-                        "enabled": true
+                        "savings": 3000
                 },
                 {
                         "id": "relax-package",
@@ -177,8 +175,7 @@ export const siteConfig = {
                         "originalPrice": 12000,
                         "discountPrice": 10000,
                         "discount": 17,
-                        "savings": 2000,
-                        "enabled": true
+                        "savings": 2000
                 },
                 {
                         "id": "sport-package",
@@ -189,8 +186,7 @@ export const siteConfig = {
                         "originalPrice": 14000,
                         "discountPrice": 11200,
                         "discount": 20,
-                        "savings": 2800,
-                        "enabled": true
+                        "savings": 2800
                 }
         ]
 },

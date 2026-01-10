@@ -4,6 +4,7 @@ import Services from "@/components/services";
 import AdvantagesWithImage from "@/components/advantages-with-image";
 import Map from "@/components/map";
 import Footer from "@/components/footer";
+import AdminAccessButton from "@/components/admin-access-button";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <AdvantagesWithImage />
         <Map />
         <Footer />
+        <AdminAccessButton />
     </div>
   );
 }
