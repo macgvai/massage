@@ -1,17 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 
 export default function AdminAccessButton() {
   const [showButton, setShowButton] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Проверяем наличие секретного параметра в URL
-    const adminKey = searchParams.get('admin');
-    const secretKey = process.env.NEXT_PUBLIC_ADMIN_KEY || 'show-admin';
+    // Проверяем наличие секретного параметра в URL на клиенте
+    const urlParams = new URLSearchParams(window.location.search);
+    const adminKey = urlParams.get('admin');
+    const secretKey = process.env.NEXT_PUBLIC_ADMIN_KEY || 'massage-secret-2024';
     
     if (adminKey === secretKey) {
       setShowButton(true);
@@ -30,7 +29,7 @@ export default function AdminAccessButton() {
       
       return () => clearInterval(interval);
     }
-  }, [searchParams]);
+  }, []);
 
   // Функция для скрытия кнопки вручную
   const hideButton = () => {
