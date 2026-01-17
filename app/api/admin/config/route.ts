@@ -5,7 +5,23 @@ import path from 'path';
 // GET - получить текущую конфигурацию
 export async function GET() {
     try {
+        // Создаем папку config если её нет
+        const configDir = path.join(process.cwd(), 'config');
+        if (!fs.existsSync(configDir)) {
+            fs.mkdirSync(configDir, { recursive: true });
+        }
+
         const configPath = path.join(process.cwd(), 'config', 'site.ts');
+        
+        // Если файл конфигурации не существует, возвращаем пустую конфигурацию
+        if (!fs.existsSync(configPath)) {
+            return NextResponse.json({ 
+                success: true, 
+                message: 'Файл конфигурации не найден',
+                config: '' 
+            });
+        }
+
         const configContent = fs.readFileSync(configPath, 'utf8');
         
         return NextResponse.json({ 
@@ -14,8 +30,9 @@ export async function GET() {
             config: configContent 
         });
     } catch (error) {
+        console.error('Ошибка при получении конфигурации:', error);
         return NextResponse.json(
-            { success: false, message: 'Ошибка при получении конфигурации' },
+            { success: false, message: `Ошибка при получении конфигурации: ${error instanceof Error ? error.message : 'Неизвестная ошибка'}` },
             { status: 500 }
         );
     }
@@ -27,8 +44,11 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
         const { config } = body;
 
-        // В реальном проекте здесь была бы валидация данных
-        // и более сложная логика сохранения
+        // Создаем папку config если её нет
+        const configDir = path.join(process.cwd(), 'config');
+        if (!fs.existsSync(configDir)) {
+            fs.mkdirSync(configDir, { recursive: true });
+        }
         
         // Создаем резервную копию
         const configPath = path.join(process.cwd(), 'config', 'site.ts');
@@ -51,7 +71,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         console.error('Ошибка при сохранении конфигурации:', error);
         return NextResponse.json(
-            { success: false, message: 'Ошибка при сохранении конфигурации' },
+            { success: false, message: `Ошибка при сохранении конфигурации: ${error instanceof Error ? error.message : 'Неизвестная ошибка'}` },
             { status: 500 }
         );
     }

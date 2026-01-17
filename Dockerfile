@@ -51,6 +51,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Создаем директорию для изображений с правильными правами
 RUN mkdir -p ./public/images && chown -R nextjs:nodejs ./public/images
 
+# Создаем директорию для конфигурации с правильными правами
+RUN mkdir -p ./config && chown -R nextjs:nodejs ./config
+
 USER nextjs
 
 EXPOSE 3000

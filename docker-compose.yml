@@ -6,52 +6,22 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3082:3000"
     env_file:
       - .env.docker
     environment:
-      # Переменные окружения для продакшена
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
     
-    # Подключаем volume для сохранения изображений (используем bind mount)
     volumes:
       - ./public/images:/app/public/images
-      - ./config:/app/config:ro
+      - ./config:/app/config
     
-    # Перезапуск при падении
     restart: unless-stopped
     
-    # Проверка здоровья
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-
-  # Nginx для проксирования (опционально)
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl:ro
-    depends_on:
-      - massage-app
-    restart: unless-stopped
-    profiles:
-      - with-nginx
-
-# Альтернативная конфигурация для разработки
-# Раскомментируйте эти строки если хотите использовать локальную папку вместо volume:
-#
-# services:
-#   massage-app:
-#     volumes:
-#       - ./public/images:/app/public/images
-#       - ./config:/app/config
-#
-# И закомментируйте секцию volumes: выше

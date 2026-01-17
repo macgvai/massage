@@ -37,6 +37,10 @@ yarn-error.log*
 # Docker
 .env.production
 
+# Backup files
+*.backup*
+public/images/*.backup*
+
 # vercel
 .vercel
 
