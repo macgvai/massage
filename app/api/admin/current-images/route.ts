@@ -14,31 +14,43 @@ export async function GET() {
         }
 
         const files = fs.readdirSync(imagesDir);
+        console.log('Все файлы в папке images:', files);
         
         // Функция для поиска актуального файла по типу
         const findCurrentImage = (type: string) => {
+            console.log(`Ищем изображение типа: ${type}`);
+            
             // Ищем файлы с timestamp
-            const timestampFiles = files.filter(f => 
-                f.startsWith(`${type}-`) && 
-                !f.includes('placeholder') && 
-                !f.includes('realistic') &&
-                !f.includes('backup')
-            );
+            const timestampFiles = files.filter(f => {
+                const matches = f.startsWith(`${type}-`) && 
+                               !f.includes('placeholder') && 
+                               !f.includes('realistic') &&
+                               !f.includes('backup');
+                console.log(`Файл ${f} подходит для ${type}:`, matches);
+                return matches;
+            });
+            
+            console.log(`Найденные файлы с timestamp для ${type}:`, timestampFiles);
             
             if (timestampFiles.length > 0) {
                 // Сортируем по timestamp (самый новый)
                 timestampFiles.sort((a, b) => {
-                    const timestampA = parseInt(a.split('-')[2]?.split('.')[0] || '0');
-                    const timestampB = parseInt(b.split('-')[2]?.split('.')[0] || '0');
+                    // Извлекаем timestamp из имени файла (например: master-photo-1768051787714.jpg)
+                    const timestampA = parseInt(a.split('-').pop()?.split('.')[0] || '0');
+                    const timestampB = parseInt(b.split('-').pop()?.split('.')[0] || '0');
+                    console.log(`Сравниваем timestamps: ${a} (${timestampA}) vs ${b} (${timestampB})`);
                     return timestampB - timestampA;
                 });
-                return `/images/${timestampFiles[0]}`;
+                const selectedFile = `/api/images/${timestampFiles[0]}`;
+                console.log(`Выбран файл для ${type}:`, selectedFile);
+                return selectedFile;
             }
             
             // Fallback на старые файлы без timestamp
             const legacyFile = files.find(f => f.startsWith(`${type}.`));
             if (legacyFile) {
-                return `/images/${legacyFile}`;
+                console.log(`Найден legacy файл для ${type}:`, legacyFile);
+                return `/api/images/${legacyFile}`;
             }
             
             // Fallback на placeholder или realistic версии
@@ -47,9 +59,11 @@ export async function GET() {
                 f.startsWith(`${type}-placeholder.`)
             );
             if (fallbackFile) {
-                return `/images/${fallbackFile}`;
+                console.log(`Найден fallback файл для ${type}:`, fallbackFile);
+                return `/images/${fallbackFile}`; // Эти файлы остаются через обычный путь
             }
             
+            console.log(`Файл для ${type} не найден`);
             return null;
         };
 
@@ -60,9 +74,15 @@ export async function GET() {
             'master-photo': findCurrentImage('master-photo')
         };
 
+        console.log('Результат поиска изображений:', currentImages);
+
         return NextResponse.json({
             success: true,
-            images: currentImages
+            images: currentImages,
+            debug: {
+                allFiles: files,
+                imagesDir: imagesDir
+            }
         });
 
     } catch (error) {

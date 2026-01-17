@@ -60,8 +60,23 @@ export async function POST(request: NextRequest) {
 
         // Создаем директорию если её нет
         const uploadDir = path.join(process.cwd(), 'public', 'images');
-        if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir, { recursive: true });
+        console.log('Upload directory:', uploadDir);
+        
+        try {
+            if (!fs.existsSync(uploadDir)) {
+                console.log('Creating upload directory...');
+                fs.mkdirSync(uploadDir, { recursive: true });
+            }
+            
+            // Проверяем права на запись
+            fs.accessSync(uploadDir, fs.constants.W_OK);
+            console.log('Directory is writable');
+        } catch (error) {
+            console.error('Directory access error:', error);
+            return NextResponse.json(
+                { success: false, message: `Ошибка доступа к директории: ${error}` },
+                { status: 500 }
+            );
         }
 
         // Удаляем старые файлы того же типа (кроме fallback файлов)
@@ -86,12 +101,31 @@ export async function POST(request: NextRequest) {
 
         // Сохраняем новый файл
         const filePath = path.join(uploadDir, fileName);
-        const bytes = await file.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-        fs.writeFileSync(filePath, buffer);
+        console.log('Saving file to:', filePath);
+        
+        try {
+            const bytes = await file.arrayBuffer();
+            const buffer = Buffer.from(bytes);
+            fs.writeFileSync(filePath, buffer);
+            console.log('File saved successfully');
+            
+            // Проверяем что файл действительно создался
+            if (fs.existsSync(filePath)) {
+                const stats = fs.statSync(filePath);
+                console.log('File size:', stats.size, 'bytes');
+            } else {
+                throw new Error('File was not created');
+            }
+        } catch (writeError) {
+            console.error('File write error:', writeError);
+            return NextResponse.json(
+                { success: false, message: `Ошибка записи файла: ${writeError}` },
+                { status: 500 }
+            );
+        }
 
-        // Возвращаем путь к файлу
-        const publicPath = `/images/${fileName}`;
+        // Возвращаем путь к файлу через API endpoint
+        const publicPath = `/api/images/${fileName}`;
 
         return NextResponse.json({
             success: true,

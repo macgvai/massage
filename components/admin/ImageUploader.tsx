@@ -101,6 +101,11 @@ export default function ImageUploader({
         setActualCurrentImage(result.filePath); // Обновляем актуальный путь
         onUploadSuccess(result.filePath);
         
+        // Отправляем сигнал об обновлении изображений
+        window.dispatchEvent(new CustomEvent('imageUpdated', { 
+          detail: { type, filePath: result.filePath } 
+        }));
+        
         // Очищаем предварительный просмотр и выбранный файл
         setTimeout(() => {
           setPreviewImage(null);

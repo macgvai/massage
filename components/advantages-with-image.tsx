@@ -14,10 +14,14 @@ export default function AdvantagesWithImage() {
     useEffect(() => {
         const fetchCurrentImage = async () => {
             try {
+                console.log('Загружаем фоновое изображение для advantages...');
                 const response = await fetch('/api/admin/current-images');
                 const result = await response.json();
                 
+                console.log('Ответ API для advantages-bg:', result);
+                
                 if (result.success && result.images['advantages-bg']) {
+                    console.log('Устанавливаем новое фоновое изображение:', result.images['advantages-bg']);
                     setCurrentBgImage(result.images['advantages-bg']);
                 }
             } catch (error) {
@@ -28,6 +32,18 @@ export default function AdvantagesWithImage() {
         };
 
         fetchCurrentImage();
+        
+        // Добавляем слушатель для обновления изображений
+        const handleImageUpdate = () => {
+            console.log('Получен сигнал обновления изображений в advantages');
+            fetchCurrentImage();
+        };
+        
+        window.addEventListener('imageUpdated', handleImageUpdate);
+        
+        return () => {
+            window.removeEventListener('imageUpdated', handleImageUpdate);
+        };
     }, []);
 
     return (

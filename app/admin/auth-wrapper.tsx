@@ -140,15 +140,6 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
                 </a>
               </div>
             </div>
-
-            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-xs text-blue-800">
-                💡 Пароль по умолчанию: <code className="bg-blue-100 px-1 rounded">massage_admin_2024</code>
-              </p>
-              <p className="text-xs text-blue-600 mt-1">
-                🔧 Если не работает, попробуйте: <code className="bg-blue-100 px-1 rounded">admin123</code>
-              </p>
-            </div>
           </Card>
         </Container>
       </div>

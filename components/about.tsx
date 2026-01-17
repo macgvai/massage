@@ -18,15 +18,29 @@ export default function About() {
     useEffect(() => {
         const fetchCurrentImages = async () => {
             try {
+                console.log('Загружаем текущие изображения...');
                 const response = await fetch('/api/admin/current-images');
                 const result = await response.json();
                 
+                console.log('Ответ API current-images:', result);
+                
                 if (result.success) {
-                    setCurrentImages({
+                    const newImages = {
                         aboutBg: result.images['about-bg'] || '/images/about-bg.jpg',
                         diploma: result.images.diploma || '/images/diploma-realistic.svg',
                         masterPhoto: result.images['master-photo'] || '/images/master-photo-placeholder.svg'
-                    });
+                    };
+                    
+                    // Добавляем cache-busting параметр для принудительного обновления
+                    const timestamp = Date.now();
+                    const imagesWithCacheBusting = {
+                        aboutBg: newImages.aboutBg + '?v=' + timestamp,
+                        diploma: newImages.diploma + '?v=' + timestamp,
+                        masterPhoto: newImages.masterPhoto + '?v=' + timestamp
+                    };
+                    
+                    console.log('Устанавливаем новые изображения с cache-busting:', imagesWithCacheBusting);
+                    setCurrentImages(imagesWithCacheBusting);
                 }
             } catch (error) {
                 console.error('Ошибка при получении текущих изображений:', error);
@@ -36,6 +50,18 @@ export default function About() {
         };
 
         fetchCurrentImages();
+        
+        // Добавляем слушатель для обновления изображений
+        const handleImageUpdate = () => {
+            console.log('Получен сигнал обновления изображений');
+            fetchCurrentImages();
+        };
+        
+        window.addEventListener('imageUpdated', handleImageUpdate);
+        
+        return () => {
+            window.removeEventListener('imageUpdated', handleImageUpdate);
+        };
     }, []);
 
     const scrollToServices = () => {
@@ -80,7 +106,7 @@ export default function About() {
                             </div>
                             
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                                Привет, я <br />
+                                {/*Привет, я <br />*/}
                                 <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
                                     {siteConfig.about.name}
                                 </span>
@@ -145,10 +171,17 @@ export default function About() {
                                         src={currentImages.masterPhoto}
                                         alt="Фото мастера"
                                         className="w-full h-full object-cover"
+                                        key={currentImages.masterPhoto} // Принудительное обновление при смене src
                                         onError={(e) => {
+                                            console.error('Ошибка загрузки фото мастера:', currentImages.masterPhoto);
                                             // Fallback если изображение не загрузится
                                             const target = e.currentTarget;
-                                            target.src = '/images/master-photo-placeholder.svg';
+                                            if (!target.src.includes('master-photo-placeholder.svg')) {
+                                                target.src = '/images/master-photo-placeholder.svg';
+                                            }
+                                        }}
+                                        onLoad={() => {
+                                            console.log('Фото мастера загружено успешно:', currentImages.masterPhoto);
                                         }}
                                     />
                                 ) : (
@@ -174,7 +207,9 @@ export default function About() {
                                             src={currentImages.diploma}
                                             alt="Диплом и сертификаты массажиста"
                                             className="w-full h-full object-cover rounded-xl"
+                                            key={currentImages.diploma} // Принудительное обновление при смене src
                                             onError={(e) => {
+                                                console.error('Ошибка загрузки диплома:', currentImages.diploma);
                                                 // Если загруженный диплом не найден, показываем SVG fallback
                                                 const target = e.currentTarget;
                                                 if (!target.src.includes('diploma-realistic.svg')) {
@@ -185,6 +220,9 @@ export default function About() {
                                                     const fallback = target.nextElementSibling as HTMLElement;
                                                     if (fallback) fallback.style.display = 'flex';
                                                 }
+                                            }}
+                                            onLoad={() => {
+                                                console.log('Диплом загружен успешно:', currentImages.diploma);
                                             }}
                                         />
                                     ) : (

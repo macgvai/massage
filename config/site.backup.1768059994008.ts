@@ -63,11 +63,11 @@ export const siteConfig = {
 
     // Социальные сети
     social: {
-        "telegram": "https://t.me/massage_salon",
-        "whatsapp": "https://wa.me/79169905365",
-        "instagram": "https://instagram.com/massage_salon",
-        "vk": "https://vk.com/massage_salon"
-},
+        telegram: "https://t.me/massage_salon",
+        whatsapp: "https://wa.me/79169905365",
+        instagram: "https://instagram.com/massage_salon",
+        vk: "https://vk.com/massage_salon"
+    },
 
     // Услуги и цены
     services: [
@@ -76,7 +76,7 @@ export const siteConfig = {
                 "title": "Классический массаж",
                 "description": "Классический массаж спины, шеи, ног и головы. Эффективно снимает напряжение, улучшает кровообращение и возвращает ощущение собранности.",
                 "duration": 60,
-                "price": 6000,
+                "price": 4000,
                 "benefits": [
                         "Снятие мышечного напряжения",
                         "Улучшение кровообращения",

@@ -7,10 +7,8 @@ export async function POST(request: NextRequest) {
   try {
     const { password } = await request.json();
 
-    // Отладочная информация (удалить в продакшене)
     console.log('Введенный пароль:', password);
     console.log('Ожидаемый пароль:', ADMIN_PASSWORD);
-    console.log('Переменная окружения ADMIN_PASSWORD:', process.env.ADMIN_PASSWORD);
 
     if (password === ADMIN_PASSWORD) {
       return NextResponse.json({ 
