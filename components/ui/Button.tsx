@@ -1,3 +1,4 @@
+'use client'
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import clsx from 'clsx';
 
@@ -6,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: 'sm' | 'md' | 'lg';
     children: ReactNode;
     className?: string;
+    scrollTo?: string | null;
 }
 
 const buttonVariants = {
@@ -25,7 +27,8 @@ export default function Button({
     variant = 'primary', 
     size = 'md', 
     className, 
-    children, 
+    children,
+    scrollTo,
     ...props 
 }: ButtonProps) {
     return (
@@ -36,9 +39,21 @@ export default function Button({
                 buttonSizes[size],
                 className
             )}
+            onClick={scrollTo ? () => {
+                scrollToServices(scrollTo);
+            } : () => {
+            }}
             {...props}
         >
             {children}
         </button>
     );
 }
+
+const scrollToServices = (scrollTo: string) => {
+
+    const servicesSection = document.querySelector(`#${scrollTo}`);
+    if (servicesSection) {
+        servicesSection.scrollIntoView({behavior: 'smooth'});
+    }
+};

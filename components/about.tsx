@@ -5,15 +5,6 @@ import {Data} from "@/types";
 
 
 export default async function About({data}: {data: Data} ) {
-
-
-    // const scrollToServices = () => {
-    //     const servicesSection = document.querySelector('#services');
-    //     if (servicesSection) {
-    //         servicesSection.scrollIntoView({behavior: 'smooth'});
-    //     }
-    // };
-
     // Создаем фиктивную услугу для кнопки консультации
     const consultationService = {
         title: "Консультация",
@@ -95,7 +86,7 @@ export default async function About({data}: {data: Data} ) {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                // onClick={scrollToServices}
+                                scrollTo="services"
                                 className="border-white/30 text-white hover:bg-white/20 hover:text-white"
                             >
                                 Посмотреть услуги
@@ -166,13 +157,6 @@ export default async function About({data}: {data: Data} ) {
                     </div>
                 </div>
             </Container>
-
-            {/* Стрелка вниз */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                </svg>
-            </div>
         </section>
     );
 }
