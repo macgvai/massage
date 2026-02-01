@@ -1,31 +1,30 @@
-export type SiteConfig = typeof siteConfig;
-
-export const siteConfig = {
+"use strict";
+exports.__esModule = true;
+exports.getPackagePrice = exports.getServiceById = exports.formatDuration = exports.formatPrice = exports.siteConfig = void 0;
+exports.siteConfig = {
     // Основная информация о сайте
     name: "Массажный салон",
     fullName: "Массажный салон Андрея Васкеса",
     description: "Профессиональные массажные услуги в Симферополе. Классический, лечебный и спортивный массаж от сертифицированного специалиста на ул. Беспалова, 110м.",
-    
     // Навигация
     navItems: [
         {
             label: "Услуги и цены",
-            href: "#services",
+            href: "#services"
         },
         {
             label: "О мастере",
-            href: "#about",
+            href: "#about"
         },
         {
             label: "Преимущества",
-            href: "#advantages",
+            href: "#advantages"
         },
         {
             label: "Контакты",
-            href: "#map",
+            href: "#map"
         },
     ],
-
     // Информация о мастере
     about: {
         name: "Андрей Васкес",
@@ -40,14 +39,13 @@ export const siteConfig = {
         ],
         motto: "Ваше здоровье и комфорт - моя главная цель"
     },
-
     // Контактная информация
     contact: {
         phone: "+7 (916) 990-53-65",
-        phoneFormatted: "79169905365", // Для WhatsApp ссылок
+        phoneFormatted: "79169905365",
         email: "info@massage-salon.ru",
         address: "г. Симферополь, ул. Беспалова, д. 110м",
-        addressShort: "Симферополь, ул. Беспалова, 110м",
+        addressShort: "г. Симферополь, ул. Беспалова, д. 110м",
         coordinates: {
             lat: 44.931419,
             lng: 34.135954
@@ -60,136 +58,137 @@ export const siteConfig = {
         metro: "",
         parking: "Бесплатная парковка рядом с салоном"
     },
-
     // Социальные сети
     social: {
-        telegram: "https://t.me/massage_salon",
-        whatsapp: "https://wa.me/79169905365",
-        instagram: "https://instagram.com/massage_salon",
-        vk: "https://vk.com/massage_salon"
+        "telegram": "https://t.me/massage_salon",
+        "whatsapp": "https://wa.me/79169905365",
+        "instagram": "https://instagram.com/massage_salon",
+        "vk": "https://vk.com/massage_salon"
     },
-
     // Услуги и цены
     services: [
         {
-            id: "classical",
-            title: "Классический массаж",
-            description: "Классический массаж спины, шеи, ног и головы. Эффективно снимает напряжение, улучшает кровообращение и возвращает ощущение собранности.",
-            duration: 60,
-            price: 3000,
-            benefits: [
+            "id": "classical",
+            "title": "Классический массаж",
+            "description": "Классический массаж спины, шеи, ног и головы. Эффективно снимает напряжение, улучшает кровообращение и возвращает ощущение собранности.",
+            "duration": 60,
+            "price": 123,
+            "benefits": [
                 "Снятие мышечного напряжения",
                 "Улучшение кровообращения",
                 "Общее расслабление"
             ]
         },
         {
-            id: "relax",
-            title: "Релакс-массаж",
-            description: "Мягкий расслабляющий массаж для снятия стресса и усталости. Помогает переключиться, глубоко расслабиться и восстановить внутренний баланс.",
-            duration: 90,
-            price: 4000,
-            benefits: [
+            "id": "relax",
+            "title": "Релакс-массаж",
+            "description": "Мягкий расслабляющий массаж для снятия стресса и усталости. Помогает переключиться, глубоко расслабиться и восстановить внутренний баланс.",
+            "duration": 90,
+            "price": 4000,
+            "benefits": [
                 "Снятие стресса",
                 "Глубокое расслабление",
                 "Восстановление энергии"
             ]
         },
         {
-            id: "sport",
-            title: "Спортивный массаж",
-            description: "Интенсивный массаж для восстановления после нагрузок. Снижает мышечную боль, ускоряет восстановление и повышает работоспособность.",
-            duration: 60,
-            price: 3500,
-            benefits: [
+            "id": "sport",
+            "title": "Спортивный массаж",
+            "description": "Интенсивный массаж для восстановления после нагрузок. Снижает мышечную боль, ускоряет восстановление и повышает работоспособность.",
+            "duration": 60,
+            "price": 3500,
+            "benefits": [
                 "Восстановление после тренировок",
                 "Снижение мышечной боли",
                 "Повышение работоспособности"
             ]
         },
         {
-            id: "neck",
-            title: "Массаж шейно-воротниковой зоны",
-            description: "Точечная проработка шеи и плеч. Снимает зажимы, уменьшает головные боли и улучшает самочувствие при сидячей работе.",
-            duration: 30,
-            price: 2000,
-            benefits: [
+            "id": "neck",
+            "title": "Массаж шейно-воротниковой зоны",
+            "description": "Точечная проработка шеи и плеч. Снимает зажимы, уменьшает головные боли и улучшает самочувствие при сидячей работе.",
+            "duration": 30,
+            "price": 2000,
+            "benefits": [
                 "Снятие зажимов в шее",
                 "Уменьшение головных болей",
                 "Улучшение осанки"
             ]
         },
         {
-            id: "antistress",
-            title: "Антистресс-массаж",
-            description: "Спокойный массаж с плавными движениями для снятия нервного напряжения. Помогает восстановить сон и эмоциональное состояние.",
-            duration: 75,
-            price: 3800,
-            benefits: [
+            "id": "antistress",
+            "title": "Антистресс-массаж",
+            "description": "Спокойный массаж с плавными движениями для снятия нервного напряжения. Помогает восстановить сон и эмоциональное состояние.",
+            "duration": 75,
+            "price": 3800,
+            "benefits": [
                 "Снятие нервного напряжения",
                 "Улучшение сна",
                 "Эмоциональное восстановление"
             ]
         },
         {
-            id: "back",
-            title: "Массаж спины",
-            description: "Глубокая проработка мышц спины. Улучшает осанку, снимает хроническую усталость и ощущение скованности.",
-            duration: 45,
-            price: 2500,
-            benefits: [
+            "id": "back",
+            "title": "Массаж спины",
+            "description": "Глубокая проработка мышц спины. Улучшает осанку, снимает хроническую усталость и ощущение скованности.",
+            "duration": 45,
+            "price": 2500,
+            "benefits": [
                 "Улучшение осанки",
                 "Снятие усталости",
                 "Устранение скованности"
             ]
         }
     ],
-
     // Специальные предложения
     specialOffers: {
-        consultation: {
-            title: "Бесплатная консультация",
-            description: "Консультация по подбору подходящего вида массажа",
-            duration: 15,
-            price: 0
+        "enabled": true,
+        "consultation": {
+            "title": "Бесплатная консультация",
+            "description": "Консультация по подбору подходящего вида массажа",
+            "duration": 15,
+            "price": 0,
+            "enabled": true
         },
-        packages: [
+        "packages": [
             {
-                id: "health-package",
-                title: "Пакет 'Здоровье'",
-                description: "5 сеансов классического массажа",
-                sessions: 5,
-                serviceId: "classical",
-                originalPrice: 15000,
-                discountPrice: 12000,
-                discount: 20,
-                savings: 3000
+                "id": "health-package",
+                "title": "Пакет 'Здоровье'",
+                "description": "5 сеансов классического массажа",
+                "sessions": 5,
+                "serviceId": "classical",
+                "originalPrice": 15000,
+                "discountPrice": 12000,
+                "discount": 20,
+                "savings": 3000,
+                "enabled": true
             },
             {
-                id: "relax-package",
-                title: "Пакет 'Релакс'",
-                description: "3 сеанса релакс-массажа",
-                sessions: 3,
-                serviceId: "relax",
-                originalPrice: 12000,
-                discountPrice: 10000,
-                discount: 17,
-                savings: 2000
+                "id": "relax-package",
+                "title": "Пакет 'Релакс'",
+                "description": "3 сеанса релакс-массажа",
+                "sessions": 3,
+                "serviceId": "relax",
+                "originalPrice": 12000,
+                "discountPrice": 10000,
+                "discount": 17,
+                "savings": 2000,
+                "enabled": true
             },
             {
-                id: "sport-package",
-                title: "Пакет 'Спорт'",
-                description: "4 сеанса спортивного массажа",
-                sessions: 4,
-                serviceId: "sport",
-                originalPrice: 14000,
-                discountPrice: 11200,
-                discount: 20,
-                savings: 2800
+                "id": "sport-package",
+                "title": "Пакет 'Спорт'",
+                "description": "4 сеанса спортивного массажа",
+                "sessions": 4,
+                "serviceId": "sport",
+                "originalPrice": 14000,
+                "discountPrice": 11200,
+                "discount": 20,
+                "savings": 2800,
+                "enabled": true
             }
         ]
     },
-
     // Преимущества
     advantages: [
         {
@@ -223,7 +222,6 @@ export const siteConfig = {
             icon: "🎯"
         }
     ],
-
     // Отзывы
     testimonials: [
         {
@@ -245,7 +243,6 @@ export const siteConfig = {
             date: "2024-01-08"
         }
     ],
-
     // SEO и мета-информация
     seo: {
         keywords: [
@@ -261,31 +258,31 @@ export const siteConfig = {
         ogImage: "/images/about-bg.jpg"
     }
 };
-
 // Вспомогательные функции для работы с услугами и ценами
-export const formatPrice = (price: number): string => `${price.toLocaleString('ru-RU')} ₽`;
-
-export const formatDuration = (minutes: number): string => {
+var formatPrice = function (price) { return "".concat(price.toLocaleString('ru-RU'), " \u20BD"); };
+exports.formatPrice = formatPrice;
+var formatDuration = function (minutes) {
     if (minutes < 60) {
-        return `${minutes} мин`;
+        return "".concat(minutes, " \u043C\u0438\u043D");
     }
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
+    var hours = Math.floor(minutes / 60);
+    var remainingMinutes = minutes % 60;
     if (remainingMinutes === 0) {
-        return `${hours} ч`;
+        return "".concat(hours, " \u0447");
     }
-    return `${hours} ч ${remainingMinutes} мин`;
+    return "".concat(hours, " \u0447 ").concat(remainingMinutes, " \u043C\u0438\u043D");
 };
-
-export const getServiceById = (id: string) => {
-    return siteConfig.services.find(service => service.id === id);
+exports.formatDuration = formatDuration;
+var getServiceById = function (id) {
+    return exports.siteConfig.services.find(function (service) { return service.id === id; });
 };
-
-export const getPackagePrice = (packageItem: typeof siteConfig.specialOffers.packages[0]) => {
+exports.getServiceById = getServiceById;
+var getPackagePrice = function (packageItem) {
     return {
-        original: formatPrice(packageItem.originalPrice),
-        discount: formatPrice(packageItem.discountPrice),
-        savings: formatPrice(packageItem.savings),
-        discountPercent: `${packageItem.discount}%`
+        original: (0, exports.formatPrice)(packageItem.originalPrice),
+        discount: (0, exports.formatPrice)(packageItem.discountPrice),
+        savings: (0, exports.formatPrice)(packageItem.savings),
+        discountPercent: "".concat(packageItem.discount, "%")
     };
 };
+exports.getPackagePrice = getPackagePrice;
