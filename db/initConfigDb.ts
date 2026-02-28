@@ -1,18 +1,4 @@
 import initDb from './client'; // твой файл инициализации БД
-import { siteConfig } from '../config/site';
-
-async function createKeyValueTable() {
-    const db = await initDb();
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS key_value (
-            key TEXT PRIMARY KEY,
-            value TEXT
-        )
-    `);
-
-    console.log('Table key_value created or already exists.');
-}
 
 async function createAboutTable() {
     const db = await initDb();
@@ -52,28 +38,3 @@ async function createAboutTable() {
     await insert.finalize();
     console.log('Таблица "about" создана и заполнена.');
 }
-
-async function saveConfigToDb(config: typeof siteConfig) {
-    const db = await initDb();
-
-    const insert = await db.prepare(`
-        INSERT OR REPLACE INTO key_value (key, value)
-        VALUES (?, ?)
-    `);
-
-    for (const [key, value] of Object.entries(config)) {
-        await insert.run(key, JSON.stringify(value));
-    }
-
-    await insert.finalize();
-
-    console.log('Site configuration saved to database.');
-}
-
-(async () => {
-    console.log('777')
-    await createAboutTable();
-    await createKeyValueTable();
-    await saveConfigToDb(siteConfig);
-    process.exit(0); // Завершаем скрипт
-})();

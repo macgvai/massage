@@ -11,7 +11,6 @@ export default async function About({data}: {data: Data} ) {
         description: "Бесплатная консультация по подбору подходящего вида массажа и обсуждение ваших потребностей",
         href: "#consultation"
     };
-
     return (
         <section id="about" className="relative min-h-screen flex items-center overflow-hidden">
             <div

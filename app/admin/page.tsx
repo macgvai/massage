@@ -6,6 +6,7 @@ import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import ImageUploader from '@/components/admin/ImageUploader';
+import {updateAbout} from "@/app/api/services/mainServices";
 
 interface AdminConfig {
   name: string;
@@ -85,6 +86,16 @@ export default function AdminPage() {
   const handleSave = async () => {
     setIsSaving(true);
     try {
+      await fetch('/api/updateConfig', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({config}),
+      });
+
+      // TODO переделать всё на sqlite
+
       const response = await fetch('/api/admin/config', {
         method: 'POST',
         headers: {
@@ -97,9 +108,9 @@ export default function AdminPage() {
       
       if (result.success) {
         setSaveMessage('✅ Изменения сохранены успешно!');
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
       } else {
         setSaveMessage('❌ Ошибка при сохранении: ' + result.message);
       }
