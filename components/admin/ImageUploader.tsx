@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react/no-unescaped-entities */
 
 import { useState, useRef, useEffect } from 'react';
 import Button from '@/components/ui/Button';
@@ -28,17 +29,16 @@ export default function ImageUploader({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Загружаем актуальный путь к изображению
+  // Загружаем актуальный путь к изображению из конфигурации
   useEffect(() => {
     const fetchCurrentImage = async () => {
       try {
-        const response = await fetch('/api/admin/current-images');
+        const response = await fetch('/api/admin/config');
         const result = await response.json();
         
-        if (result.success && result.images[type]) {
-          setActualCurrentImage(result.images[type]);
+        if (result.success && result.config?.images?.[type]) {
+          setActualCurrentImage(result.config.images[type]);
         } else {
-          // Fallback на дефолтные пути
           const fallbacks = {
             'about-bg': '/images/about-bg.jpg',
             'advantages-bg': '/images/advantages-bg.jpg',
@@ -251,7 +251,7 @@ export default function ImageUploader({
                 {selectedFile.name} ({Math.round(selectedFile.size / 1024)} KB)
               </p>
               <p className="text-xs text-emerald-600 mt-2">
-                👆 Нажмите "Сохранить" чтобы применить изменения
+                Файл загрузится сразу после нажатия на кнопку ниже
               </p>
             </div>
           ) : (

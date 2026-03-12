@@ -15,10 +15,10 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import { useState } from "react";
 
-import { siteConfig } from "@/config/site";
 import { TelegramIcon } from "@/components/icons";
+import { SiteConfig } from "@/types";
 
-export const Header = () => {
+export const Header = ({ siteConfig }: { siteConfig: SiteConfig }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleMenuItemClick = () => {

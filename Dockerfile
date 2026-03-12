@@ -1,58 +1,46 @@
-# Используем официальный Node.js образ (версия 20 для Next.js)
 FROM node:20-alpine AS base
 
-# Устанавливаем зависимости только при необходимости
+# Установка зависимостей
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
 
-# Копируем файлы зависимостей
 COPY package.json package-lock.json* ./
-# Устанавливаем ВСЕ зависимости (включая dev для сборки)
 RUN npm ci
 
-# Пересобираем исходный код только при необходимости
+# Сборка приложения
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Отключаем телеметрию Next.js во время сборки
-ENV NEXT_TELEMETRY_DISABLED 1
+# Инициализация БД
+RUN npm run db:seed
 
-# Добавляем переменные окружения для сборки
+# Сборка Next.js
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
-
-# Собираем приложение
 RUN npm run build
 
-# Продакшн образ, копируем все файлы и запускаем Next.js
+# Production образ
 FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Создаем пользователя для безопасности
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Копируем публичные файлы
+# Копируем необходимые файлы
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/db ./db
 
-# Создаем директорию .next и устанавливаем права
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Копируем собранное приложение
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-# Создаем директорию для изображений с правильными правами
+# Создаем директории с правами
 RUN mkdir -p ./public/images && chown -R nextjs:nodejs ./public/images
-
-# Создаем директорию для конфигурации с правильными правами
-RUN mkdir -p ./config && chown -R nextjs:nodejs ./config
+RUN chown -R nextjs:nodejs /app
 
 USER nextjs
 
@@ -61,5 +49,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Запускаем приложение
 CMD ["node", "server.js"]

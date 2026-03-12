@@ -4,10 +4,10 @@ import path from 'path';
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: Promise<{ path: string[] }> }
+    { params }: { params: Promise<{ path: string[] }> | { path: string[] } }
 ) {
     try {
-        const resolvedParams = await params;
+        const resolvedParams = await Promise.resolve(params);
         const imagePath = resolvedParams.path.join('/');
         const fullPath = path.join(process.cwd(), 'public', 'images', imagePath);
         

@@ -22,23 +22,33 @@ export async function GET() {
         });
 
         // Группируем по типам
+        const byPrefix = (prefix: string) => imageFiles.filter(f => f.startsWith(prefix));
+
         const images = {
-            'about-bg': imageFiles.filter(f => f.startsWith('about-bg.')),
-            'advantages-bg': imageFiles.filter(f => f.startsWith('advantages-bg.')),
-            'diploma': imageFiles.filter(f => f.startsWith('diploma.') && !f.includes('placeholder')),
-            'master-photo': imageFiles.filter(f => f.startsWith('master-photo.') && !f.includes('placeholder')),
+            'about-bg': byPrefix('about-bg'),
+            'advantages-bg': byPrefix('advantages-bg'),
+            'diploma': imageFiles.filter(f => f.startsWith('diploma') && !f.includes('placeholder')),
+            'master-photo': imageFiles.filter(f => f.startsWith('master-photo') && !f.includes('placeholder')),
             'placeholders': imageFiles.filter(f => f.includes('placeholder')),
-            'other': imageFiles.filter(f => 
-                !f.startsWith('about-bg.') && 
-                !f.startsWith('advantages-bg.') && 
-                !f.startsWith('diploma.') && 
-                !f.startsWith('master-photo.') &&
+            'other': imageFiles.filter(f =>
+                !f.startsWith('about-bg') &&
+                !f.startsWith('advantages-bg') &&
+                !f.startsWith('diploma') &&
+                !f.startsWith('master-photo') &&
                 !f.includes('placeholder')
             )
         };
 
         // Добавляем информацию о файлах
-        const imageInfo = Object.entries(images).reduce((acc, [type, files]) => {
+        type FileInfo = {
+            name: string;
+            path: string;
+            size: number;
+            modified: Date;
+            exists: boolean;
+        };
+
+        const imageInfo = Object.entries(images).reduce<Record<string, FileInfo[]>>((acc, [type, files]) => {
             acc[type] = files.map(file => {
                 const filePath = path.join(imagesDir, file);
                 const stats = fs.statSync(filePath);
@@ -52,7 +62,7 @@ export async function GET() {
                 };
             });
             return acc;
-        }, {} as Record<string, any[]>);
+        }, {} as Record<string, FileInfo[]>);
 
         return NextResponse.json({
             success: true,

@@ -1,49 +1,34 @@
-import initDb from "@/db/client";
-import {AboutProps} from "@/types";
+import initDb from '@/db/client';
+import { AdminConfig } from '@/types';
 
-export async function getAbout(): Promise<AboutProps | null> {
-    try {
-        const db = await initDb();
-        const rows = await db.all("SELECT * FROM about");
-
-        if (rows && rows.length > 0) {
-            const data = rows[0];
-
-            // Парсим achievements, если это строка
-            if (typeof data.achievements === 'string') {
-                try {
-                    const parsed = JSON.parse(data.achievements);
-                    data.achievements = Array.isArray(parsed)
-                        ? parsed.map(item => String(item))
-                        : [];
-                } catch (e) {
-                    console.warn("Failed to parse achievements as JSON", e);
-                    data.achievements = [];
-                }
-            } else {
-                // Если achievements не строка — приводим к массиву строк
-                data.achievements = [];
-            }
-
-            return data as AboutProps;
-        }
-
-        return null;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
+// Получить всю конфигурацию
+export async function getConfig(): Promise<AdminConfig> {
+    const db = await initDb();
+    const row = await db.get('SELECT value FROM key_value WHERE key = ?', 'config');
+    
+    if (!row) {
+        throw new Error('Конфигурация не найдена в БД');
     }
+    
+    return JSON.parse(row.value) as AdminConfig;
 }
 
-export async function updateAbout(data: AboutProps): Promise<void> {
+// Обновить конфигурацию
+export async function updateConfig(config: AdminConfig): Promise<void> {
     const db = await initDb();
-    try {
-        const res = await db.run(
-            "UPDATE about SET name = ?, title = ?, experience = ?, description = ?, achievements = ?, motto = ?",
-            [data.name, data.title, data.experience, data.description, JSON.stringify(data.achievements), data.motto]
-        );
-        return res;
-    } catch (error) {
-        console.error('Error updating data:', error);
-    }
+    await db.run(
+        'INSERT OR REPLACE INTO key_value (key, value) VALUES (?, ?)',
+        'config',
+        JSON.stringify(config)
+    );
+}
+
+// Для обратной совместимости
+export async function getSiteConfig() {
+    return getConfig();
+}
+
+export async function getAbout() {
+    const config = await getConfig();
+    return config.about;
 }

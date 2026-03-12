@@ -7,39 +7,20 @@ services:
     restart: unless-stopped
     ports:
       - "3082:3000"
-    env_file:
-      - .env.docker
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://massage-simferopol.ru}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - NEXT_PUBLIC_ADMIN_KEY=${NEXT_PUBLIC_ADMIN_KEY:-massage-secret-2024}
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3082
     volumes:
       - ./db:/app/db
       - ./public/images:/app/public/images
-    networks:
-      - massage-network
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-
-  nginx:
-    image: nginx:alpine
-    container_name: massage-nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl:ro
-    depends_on:
-      - app
-    networks:
-      - massage-network
-
-networks:
-  massage-network:
-    driver: bridge

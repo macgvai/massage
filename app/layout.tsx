@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import {Providers} from "@/app/providers";
-import {Header} from "@/components/header";
-import { siteConfig } from "@/config/site";
+import { Providers } from "@/app/providers";
+import { Header } from "@/components/header";
 import React from "react";
+import { getSiteConfig } from "@/app/api/services/mainServices";
+
+export const dynamic = "force-dynamic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,61 +18,82 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-    title: `${siteConfig.name} — профессиональный массаж и запись онлайн`,
+export async function generateMetadata(): Promise<Metadata> {
+  const siteConfig = await getSiteConfig();
+
+  return {
+    title: siteConfig.name,
     description: siteConfig.description,
-
-    keywords: siteConfig.seo.keywords,
-
+    keywords: siteConfig.seo.keywords.join(', '),
+    authors: [{ name: siteConfig.about.name }],
+    creator: siteConfig.about.name,
+    publisher: siteConfig.name,
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://massage-simferopol.ru'),
+    alternates: {
+      canonical: '/',
+    },
     openGraph: {
-        title: siteConfig.name,
-        description: siteConfig.description,
-        url: "https://your-site.ru",
-        siteName: siteConfig.name,
-        images: [
-            {
-                url: siteConfig.seo.ogImage,
-                width: 1200,
-                height: 630,
-                alt: siteConfig.name,
-            },
-        ],
-        locale: "ru_RU",
-        type: "website",
+      title: siteConfig.fullName,
+      description: siteConfig.description,
+      url: '/',
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: siteConfig.seo.ogImage || '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+      locale: 'ru_RU',
+      type: 'website',
     },
-
     twitter: {
-        card: "summary_large_image",
-        title: `${siteConfig.name} — запись онлайн`,
-        description: siteConfig.description,
-        images: [siteConfig.seo.ogImage],
+      card: 'summary_large_image',
+      title: siteConfig.fullName,
+      description: siteConfig.description,
+      images: [siteConfig.seo.ogImage || '/og-image.jpg'],
     },
-
     robots: {
+      index: true,
+      follow: true,
+      googleBot: {
         index: true,
         follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-
-    alternates: {
-        canonical: "https://your-site.ru",
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+      yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
     },
-};
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteConfig = await getSiteConfig();
+
   return (
     <html suppressHydrationWarning lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <h1 className="visually-hidden">{siteConfig.name}</h1>
-      <Providers>
-        <Header />
-        {children}
-      </Providers>
+        <h1 className="visually-hidden">{siteConfig.name}</h1>
+        <Providers>
+          <Header siteConfig={siteConfig} />
+          {children}
+        </Providers>
       </body>
     </html>
   );

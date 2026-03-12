@@ -1,19 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Включаем standalone режим для Docker
-  output: 'standalone',
-  
-  // Оптимизации для продакшена
+  output: "standalone",
   experimental: {
-    optimizePackageImports: ['@heroui/react']
+    optimizePackageImports: ["@heroui/react"],
   },
-  
-  // Настройки изображений
   images: {
-    domains: ['localhost'],
-    unoptimized: true
-  }
+    remotePatterns: [
+      { protocol: "http", hostname: "localhost", port: "3082", pathname: "/**" },
+      { protocol: "http", hostname: "localhost", port: "3000", pathname: "/**" },
+      { protocol: "https", hostname: "**", pathname: "/**" },
+    ],
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;

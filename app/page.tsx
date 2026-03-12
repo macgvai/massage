@@ -7,36 +7,45 @@ import AdvantagesWithImage from "@/components/advantages-with-image";
 import Map from "@/components/map";
 import Footer from "@/components/footer";
 import AdminAccessButton from "@/components/admin-access-button";
-import {Data} from "@/types";
-import {getAbout} from "@/app/api/services/mainServices";
+import JsonLd from "@/components/JsonLd";
+import { Data } from "@/types";
+import { getAbout, getSiteConfig } from "@/app/api/services/mainServices";
 
 export default async  function Home() {
     const data: Data = {
         dataAbout: null,
+        siteConfig: null,
         currentImages: null
     };
 
     try {
-        data.dataAbout = await getAbout();
+        const [about, siteConfig] = await Promise.all([
+            getAbout(),
+            getSiteConfig(),
+        ]);
 
-        const response = await fetch('http://localhost:3082/api/admin/current-images');
-        const result = await response.json();
-        data.currentImages = result?.images || null;
-
+        data.dataAbout = about;
+        data.siteConfig = siteConfig;
+        data.currentImages = siteConfig.images; // Изображения теперь в конфигурации
     } catch (error) {
         console.error("Error fetching data from database:", error);
     }
 
-
-    console.log('***********************************************************************************',data)
-
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black">
+        {data.siteConfig && <JsonLd siteConfig={data.siteConfig} />}
         <About data={data}/>
-        <Services />
-        <AdvantagesWithImage />
-        <Map />
-        <Footer />
+        {data.siteConfig && (
+            <>
+                <Services siteConfig={data.siteConfig} />
+                <AdvantagesWithImage
+                    siteConfig={data.siteConfig}
+                    currentImages={data.currentImages}
+                />
+                <Map siteConfig={data.siteConfig} />
+                <Footer siteConfig={data.siteConfig} />
+            </>
+        )}
         <AdminAccessButton />
     </div>
   );
