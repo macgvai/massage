@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import sharp from 'sharp';
 import { getConfig, updateConfig } from '@/app/api/services/mainServices';
 
 export async function POST(request: NextRequest) {
@@ -8,7 +9,7 @@ export async function POST(request: NextRequest) {
         const formData = await request.formData();
         const file = formData.get('file') as File;
         const type = formData.get('type') as string;
-        
+
         if (!file) {
             return NextResponse.json(
                 { success: false, message: 'Файл не найден' },
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Проверяем тип файла
+        // Проверяем тип файла (разрешаем только изображения)
         const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
         if (!allowedTypes.includes(file.type)) {
             return NextResponse.json(
@@ -36,21 +37,19 @@ export async function POST(request: NextRequest) {
 
         // Определяем имя файла
         const timestamp = Date.now();
-        const fileExtension = file.name.split('.').pop()?.toLowerCase() || 'jpg';
-        const fileName = `${type}-${timestamp}.${fileExtension}`;
+        const fileName = `${type}-${timestamp}.webp`; // Всегда WebP
 
         // Создаем директорию если её нет
         const uploadDir = path.join(process.cwd(), 'public', 'images');
-        
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
 
         // Удаляем старые файлы того же типа
         const files = fs.readdirSync(uploadDir);
-        const oldFiles = files.filter(f => 
-            f.startsWith(`${type}-`) && 
-            !f.includes('placeholder') && 
+        const oldFiles = files.filter(f =>
+            f.startsWith(`${type}-`) &&
+            !f.includes('placeholder') &&
             !f.includes('realistic') &&
             f !== fileName
         );
@@ -62,11 +61,18 @@ export async function POST(request: NextRequest) {
             }
         });
 
-        // Сохраняем новый файл
-        const filePath = path.join(uploadDir, fileName);
+        // Читаем файл как Buffer
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
-        fs.writeFileSync(filePath, buffer);
+
+        // Конвертируем изображение в WebP с помощью sharp
+        const webpBuffer = await sharp(buffer)
+            .webp({ quality: 80 }) // Можно настроить качество
+            .toBuffer();
+
+        // Сохраняем конвертированный файл
+        const filePath = path.join(uploadDir, fileName);
+        fs.writeFileSync(filePath, webpBuffer);
 
         // Путь для сохранения в БД
         const publicPath = `/images/${fileName}`;
@@ -79,7 +85,7 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            message: 'Файл успешно загружен и сохранен в БД',
+            message: 'Файл успешно загружен, конвертирован в WebP и сохранён в БД',
             filePath: publicPath,
             fileName: fileName
         });

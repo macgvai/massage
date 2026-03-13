@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteConfig = await getSiteConfig();
-
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://массажвсимферополе.рф';
   return {
     title: siteConfig.name,
     description: siteConfig.description,
@@ -33,18 +33,18 @@ export async function generateMetadata(): Promise<Metadata> {
       address: false,
       telephone: false,
     },
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://massage-simferopol.ru'),
+    metadataBase: new URL(baseUrl),
     alternates: {
       canonical: '/',
     },
     openGraph: {
       title: siteConfig.fullName,
       description: siteConfig.description,
-      url: '/',
+      url: new URL('/', baseUrl).toString(),
       siteName: siteConfig.name,
       images: [
         {
-          url: siteConfig.seo.ogImage || '/og-image.jpg',
+          url: new URL(siteConfig.seo.ogImage || '/og-image.jpg', baseUrl).toString(),
           width: 1200,
           height: 630,
           alt: siteConfig.name,
@@ -57,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: siteConfig.fullName,
       description: siteConfig.description,
-      images: [siteConfig.seo.ogImage || '/og-image.jpg'],
+      images: [new URL(siteConfig.seo.ogImage || '/og-image.jpg', baseUrl).toString()],
     },
     robots: {
       index: true,
@@ -76,7 +76,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-
 export default async function RootLayout({
   children,
 }: Readonly<{

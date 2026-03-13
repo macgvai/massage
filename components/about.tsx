@@ -102,7 +102,7 @@ export default async function About({data}: {data: Data} ) {
 
 
                                     <img
-                                        src={data.currentImages?.['master-photo']}
+                                        src={`/api${data.currentImages?.['master-photo']}`}
                                         alt="Фото мастера"
                                         className="w-full h-full object-cover"
                                         key={data.currentImages?.['master-photo']} // Принудительное обновление при смене src
@@ -123,7 +123,7 @@ export default async function About({data}: {data: Data} ) {
                                     className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 flex items-center justify-center">
 
                                         <img
-                                            src={data.currentImages?.diploma}
+                                            src={`/api${data.currentImages?.diploma}`}
                                             alt="Диплом и сертификаты массажиста"
                                             className="w-full h-full object-cover rounded-xl"
                                             key={data.currentImages?.diploma} // Принудительное обновление при смене src

@@ -58,7 +58,7 @@ export default function ImageUploader({
   // Определяем текущее изображение
   const getCurrentImage = () => {
     if (previewImage) return previewImage;
-    if (actualCurrentImage) return actualCurrentImage;
+    if (actualCurrentImage) return `api${actualCurrentImage}`;
     return null; // Возвращаем null вместо пустой строки
   };
 
