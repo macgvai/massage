@@ -117,6 +117,7 @@ export interface SiteConfig {
     testimonials: TestimonialItem[];
     seo: SeoInfo;
     images: CurrentImages;
+    about: AboutProps
 }
 
 export type AdminConfig = SiteConfig & {

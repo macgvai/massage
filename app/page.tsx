@@ -7,7 +7,6 @@ import AdvantagesWithImage from "@/components/advantages-with-image";
 import Map from "@/components/map";
 import Footer from "@/components/footer";
 import AdminAccessButton from "@/components/admin-access-button";
-import JsonLd from "@/components/JsonLd";
 import { Data } from "@/types";
 import { getAbout, getSiteConfig } from "@/app/api/services/mainServices";
 
@@ -33,7 +32,6 @@ export default async  function Home() {
 
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black">
-        {data.siteConfig && <JsonLd siteConfig={data.siteConfig} />}
         <About data={data}/>
         {data.siteConfig && (
             <>
