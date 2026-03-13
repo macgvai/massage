@@ -1,29 +1,23 @@
 'use client';
 
 import { useMemo } from "react";
-import { CurrentImages, SiteConfig } from "@/types";
+import { SiteConfig } from "@/types";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Card from "@/components/ui/Card";
 import Container from "@/components/ui/Container";
 
-export default function AdvantagesWithImage({
-    siteConfig,
-    currentImages,
-}: {
-    siteConfig: SiteConfig;
-    currentImages?: CurrentImages | null;
-}) {
+export default function AdvantagesWithImage({siteConfig}: {siteConfig: SiteConfig}) {
     const currentBgImage = useMemo(() => {
-        const val = currentImages?.["advantages-bg"];
+        const val = siteConfig.images?.["advantages-bg"];
         return typeof val === "string" && val.length > 0 ? val : "/images/advantages-bg.jpg";
-    }, [currentImages]);
+    }, [siteConfig.images]);
 
     return (
         <section id="advantages" className="relative py-20 overflow-hidden">
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: `url('${currentBgImage}')`,
+                    backgroundImage: `url('/api${currentBgImage}')`,
                 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60"></div>

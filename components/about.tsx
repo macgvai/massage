@@ -1,10 +1,10 @@
 import ShowModalBtn from "@/components/showModalBtn";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import {Data} from "@/types";
+import {Data, SiteConfig} from "@/types";
 
 
-export default async function About({data}: {data: Data} ) {
+export default async function About({ siteConfig }: { siteConfig: SiteConfig } ) {
     // Создаем фиктивную услугу для кнопки консультации
     const consultationService = {
         title: "Консультация",
@@ -16,7 +16,7 @@ export default async function About({data}: {data: Data} ) {
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: `url('${data.currentImages?.["about-bg"]}')`
+                    backgroundImage: `url('/api${siteConfig.images?.["about-bg"]}')`
                 }}
             >
                 {/* Градиентный оверлей */}
@@ -32,7 +32,7 @@ export default async function About({data}: {data: Data} ) {
                             <div
                                 className="inline-block px-4 py-2 bg-emerald-500/20 backdrop-blur-sm rounded-full border border-emerald-400/30">
                                 <span className="text-emerald-300 text-sm font-medium">
-                                    {data.dataAbout?.experience}
+                                    {siteConfig.about?.experience}
                                 </span>
                             </div>
 
@@ -40,22 +40,22 @@ export default async function About({data}: {data: Data} ) {
                                 {/*Привет, я <br />*/}
                                 <span
                                     className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                                    {data.dataAbout?.name}
+                                    {siteConfig.about?.name}
                                 </span>
                             </h1>
 
                             <p className="text-xl text-emerald-300 font-medium">
-                                {data.dataAbout?.title}
+                                {siteConfig.about?.title}
                             </p>
                         </div>
 
                         <p className="text-gray-200 text-lg leading-relaxed">
-                            {data.dataAbout?.description}
+                            {siteConfig.about?.description}
                         </p>
 
                         {/* Достижения */}
                         <div className="space-y-3">
-                            {data.dataAbout?.achievements.map((achievement, index) => (
+                            {siteConfig.about?.achievements.map((achievement, index) => (
                                 <div
                                     key={index}
                                     className="flex items-start space-x-3 text-gray-200"
@@ -69,7 +69,7 @@ export default async function About({data}: {data: Data} ) {
                         {/* Девиз */}
                         <div className="p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
                             <p className="text-white font-medium italic text-center">
-                                {data.dataAbout?.motto}
+                                {siteConfig.about?.motto}
                             </p>
                         </div>
 
@@ -102,10 +102,10 @@ export default async function About({data}: {data: Data} ) {
 
 
                                     <img
-                                        src={`/api${data.currentImages?.['master-photo']}`}
+                                        src={`/api${siteConfig.images?.['master-photo']}`}
                                         alt="Фото мастера"
                                         className="w-full h-full object-cover"
-                                        key={data.currentImages?.['master-photo']} // Принудительное обновление при смене src
+                                        key={siteConfig.images?.['master-photo']} // Принудительное обновление при смене src
                                     />
                             </div>
                         </div>
@@ -123,10 +123,10 @@ export default async function About({data}: {data: Data} ) {
                                     className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 flex items-center justify-center">
 
                                         <img
-                                            src={`/api${data.currentImages?.diploma}`}
+                                            src={`/api${siteConfig.images?.diploma}`}
                                             alt="Диплом и сертификаты массажиста"
                                             className="w-full h-full object-cover rounded-xl"
-                                            key={data.currentImages?.diploma} // Принудительное обновление при смене src
+                                            key={siteConfig.images?.diploma} // Принудительное обновление при смене src
                                         />
 
                                     {/* Fallback placeholder */}

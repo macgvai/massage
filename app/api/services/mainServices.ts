@@ -27,8 +27,3 @@ export async function updateConfig(config: AdminConfig): Promise<void> {
 export async function getSiteConfig() {
     return getConfig();
 }
-
-export async function getAbout() {
-    const config = await getConfig();
-    return config.about;
-}

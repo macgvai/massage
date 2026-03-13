@@ -12,7 +12,7 @@ services:
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://massage-simferopol.ru}
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://массажвсимферополе.рф}
     volumes:
       - ./db:/app/db
       - ./public/images:/app/public/images

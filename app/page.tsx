@@ -7,41 +7,26 @@ import AdvantagesWithImage from "@/components/advantages-with-image";
 import Map from "@/components/map";
 import Footer from "@/components/footer";
 import AdminAccessButton from "@/components/admin-access-button";
-import { Data } from "@/types";
-import { getAbout, getSiteConfig } from "@/app/api/services/mainServices";
+import {SiteConfig} from "@/types";
+import { getSiteConfig } from "@/app/api/services/mainServices";
 
 export default async  function Home() {
-    const data: Data = {
-        dataAbout: null,
-        siteConfig: null,
-        currentImages: null
-    };
-
+    let siteConfig: SiteConfig | null = null;
     try {
-        const [about, siteConfig] = await Promise.all([
-            getAbout(),
-            getSiteConfig(),
-        ]);
-
-        data.dataAbout = about;
-        data.siteConfig = siteConfig;
-        data.currentImages = siteConfig.images; // Изображения теперь в конфигурации
+        siteConfig = await getSiteConfig();
     } catch (error) {
         console.error("Error fetching data from database:", error);
     }
 
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black">
-        <About data={data}/>
-        {data.siteConfig && (
+        {siteConfig && (
             <>
-                <Services siteConfig={data.siteConfig} />
-                <AdvantagesWithImage
-                    siteConfig={data.siteConfig}
-                    currentImages={data.currentImages}
-                />
-                <Map siteConfig={data.siteConfig} />
-                <Footer siteConfig={data.siteConfig} />
+                <About siteConfig={siteConfig}/>
+                <Services siteConfig={siteConfig} />
+                <AdvantagesWithImage siteConfig={siteConfig}/>
+                <Map siteConfig={siteConfig} />
+                <Footer siteConfig={siteConfig} />
             </>
         )}
         <AdminAccessButton />

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GigaCodeAgentSettings">
+    <option name="autoApprovedCommands">
+      <list>
+        <Execute>
+          <option name="pattern" value="sqlite3 db/data.db &quot;SELECT value FROM key_value WHERE key = 'config'&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="dir db" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="sqlite3 db/db.sqlite &quot;SELECT value FROM key_value WHERE key = 'config'&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="where sqlite3" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="npx sqlite3 db/db.sqlite &quot;SELECT value FROM key_value WHERE key = 'config'&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="npm list sqlite3" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;const sqlite3 = require('sqlite3'); const db = new sqlite3.Database('db/db.sqlite'); db.get('SELECT value FROM key_value WHERE key = ?', ['config'], (err, row) =&gt; { if (err) throw err; console.log(row.value); db.close(); });&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;const sqlite3 = require('sqlite3'); const db = new sqlite3.Database('db/db.sqlite'); db.get('SELECT value FROM key_value WHERE key = ?', ['config'], (err, row) =&gt; { if (err) { console.error(err.message); process.exit(1); } console.log(row.value); db.close(); });&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;const sqlite3 = require('sqlite3'); console.log('SQLite3 module loaded'); const db = new sqlite3.Database('db/db.sqlite', (err) =&gt; { if (err) { console.error('Database error:', err.message); process.exit(1); } else { console.log('Connected to database'); } }); db.get('SELECT value FROM key_value WHERE key = ?', ['config'], (err, row) =&gt; { if (err) { console.error('Query error:', err.message); process.exit(1); } console.log('Config value:', row.value); db.close(); });&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="npm install sqlite3" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;const sqlite3 = require('sqlite3'); console.log('SQLite3 module loaded:', sqlite3); const db = new sqlite3.Database('db/db.sqlite', (err) =&gt; { if (err) { console.error('Database error:', err.message); process.exit(1); } else { console.log('Connected to database'); } }); db.get('SELECT value FROM key_value WHERE key = ?', ['config'], (err, row) =&gt; { if (err) { console.error('Query error:', err.message); process.exit(1); } console.log('Config value:', row.value); db.close(); });&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="npm list --depth=0" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;const sqlite = require('sqlite'); const sqlite3 = require('sqlite3'); console.log('SQLite module loaded:', sqlite); console.log('SQLite3 module loaded:', sqlite3); const db = await sqlite.open({ filename: 'db/db.sqlite', driver: sqlite3.Database }); const row = await db.get('SELECT value FROM key_value WHERE key = ?', 'config'); console.log('Config value:', row.value); await db.close();&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;const sqlite = require('sqlite'); const sqlite3 = require('sqlite3'); console.log('SQLite module loaded:', sqlite); console.log('SQLite3 module loaded:', sqlite3); (async () =&gt; { try { const db = await sqlite.open({ filename: 'db/db.sqlite', driver: sqlite3.Database }); const row = await db.get('SELECT value FROM key_value WHERE key = ?', 'config'); console.log('Config value:', row.value); await db.close(); } catch (err) { console.error('Error:', err.message); } })();&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="npm install sqlite" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;console.log('Current directory:', process.cwd()); console.log('Files in db directory:', require('fs').readdirSync('db'));&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;console.log('Current directory:', process.cwd()); console.log('Files in db directory:', require('fs').readdirSync('db')); process.exit(0);&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -p &quot;process.cwd()&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -p &quot;require('fs').readdirSync('db')&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;console.log(require('fs').readdirSync('db'))&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;console.log('Files in db directory:', require('fs').readdirSync('db').join(', '));&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="node -e &quot;console.log('Files in db directory: ' + require('fs').readdirSync('db').join(', '));&quot;" />
+        </Execute>
+      </list>
+    </option>
+  </component>
+</project>
