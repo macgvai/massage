@@ -2,7 +2,7 @@ import initDb from './client';
 
 const defaultConfig = {
     // Основная информация о сайте
-    name: "Массажный салон",
+    name: "Массаж в Симферополе",
     fullName: "Массажный салон Андрея Васкеса",
     description: "Профессиональные массажные услуги в Симферополе. Классический, лечебный и спортивный массаж от сертифицированного специалиста на ул. Беспалова, 110м.",
 
@@ -241,8 +241,8 @@ const defaultConfig = {
     images: {
         'about-bg': '/images/about-bg.jpg',
         'advantages-bg': '/images/advantages-bg.jpg',
-        'diploma': '/images/diploma-realistic.svg',
-        'master-photo': '/images/master-photo-placeholder.svg'
+        'diploma': '/images/diploma-1773568119624.webp',
+        'master-photo': '/images/master-photo-1773568121521.webp'
     }
 };
 

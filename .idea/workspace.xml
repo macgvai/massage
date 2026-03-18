@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="26d68180-759a-469a-8284-77e5aa1ffd90" name="Changes" comment="edit conf">
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/about.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/about.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/map.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/seed.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="96" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="9d392043cf7ed0a59ed42f4b63c41b01993b11a1" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;macgvai&quot;
+  }
+}</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1773418554" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/macgvai/massage.git",
+    "accountId": "5aaf5160-b909-4ce4-84c1-b91dec9bdf6a"
+  }
+}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/admin/page.tsx" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/app/api/admin/upload/route.ts" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/app/api/health/route.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/api/services/mainServices.ts" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/components/about.tsx" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../../php/php.exe" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="37TJK6Pq5akUH7PLo3SdL9w11bF" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.dev.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.seed.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.seed.ts.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/stvik/OneDrive/Рабочий стол/workspace/massage&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.Next.js: server-side.executor&quot;: &quot;Run&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.db:seed.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\stvik\\OneDrive\\Рабочий стол\\workspace\\massage\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;,
+      &quot;mongo&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\stvik\OneDrive\Рабочий стол\workspace\massage" />
+      <recent name="C:\Users\stvik\OneDrive\Рабочий стол\workspace\massage\components" />
+      <recent name="C:\Users\stvik\OneDrive\Рабочий стол\workspace\massage\app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\stvik\OneDrive\Рабочий стол\workspace\massage" />
+      <recent name="C:\Users\stvik\OneDrive\Рабочий стол\workspace\massage\app\api\telegram" />
+      <recent name="C:\Users\stvik\OneDrive\Рабочий стол\workspace\massage\app\api\telegram " />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.db:seed">
+    <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="seed.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/db/seed.js" working-dir="$PROJECT_DIR$/db">
+      <method v="2" />
+    </configuration>
+    <configuration name="seed.ts" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/db/seed.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/db">
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Next.js: server-side" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="db:seed" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="db:seed" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="JavaScript Debug.Next.js: debug client-side" />
+      <item itemvalue="Node.js.seed.js" />
+      <item itemvalue="Node.js.seed.ts" />
+      <item itemvalue="npm.Next.js: server-side" />
+      <item itemvalue="npm.db:seed" />
+      <item itemvalue="npm.start" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.db:seed" />
+        <item itemvalue="Node.js.seed.ts" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="Node.js.seed.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-PS-253.28294.345" />
+        <option value="bundled-php-predefined-a98d8de5180a-09080813851e-com.jetbrains.php.sharedIndexes-PS-253.28294.345" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\stvik\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="26d68180-759a-469a-8284-77e5aa1ffd90" name="Changes" comment="" />
+      <created>1766921060337</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766921060337</updated>
+      <workItem from="1766921061487" duration="8765000" />
+      <workItem from="1766933351349" duration="49000" />
+      <workItem from="1767080335881" duration="18000" />
+      <workItem from="1767358617464" duration="5476000" />
+      <workItem from="1767364151596" duration="2673000" />
+      <workItem from="1767417568324" duration="93000" />
+      <workItem from="1767893770154" duration="66000" />
+      <workItem from="1767985569732" duration="330000" />
+      <workItem from="1767986056083" duration="22000" />
+      <workItem from="1768135895498" duration="3888000" />
+      <workItem from="1768644981705" duration="16704000" />
+      <workItem from="1768726667147" duration="14002000" />
+      <workItem from="1768742575341" duration="4009000" />
+      <workItem from="1768927912809" duration="2601000" />
+      <workItem from="1769339652960" duration="7412000" />
+      <workItem from="1769930964818" duration="14575000" />
+      <workItem from="1770536388206" duration="1241000" />
+      <workItem from="1770555732623" duration="1716000" />
+      <workItem from="1770784255824" duration="3000" />
+      <workItem from="1771528336968" duration="1123000" />
+      <workItem from="1771529842745" duration="38000" />
+      <workItem from="1772282862384" duration="33000" />
+      <workItem from="1772282920048" duration="645000" />
+      <workItem from="1772283744800" duration="9454000" />
+      <workItem from="1772296246998" duration="606000" />
+      <workItem from="1772297357563" duration="131000" />
+      <workItem from="1772387356155" duration="137000" />
+      <workItem from="1772641989282" duration="6000" />
+      <workItem from="1772642042751" duration="152000" />
+      <workItem from="1773086254837" duration="581000" />
+      <workItem from="1773116384610" duration="4000" />
+      <workItem from="1773116556091" duration="23000" />
+      <workItem from="1773116593233" duration="22000" />
+      <workItem from="1773116624496" duration="2969000" />
+      <workItem from="1773159893433" duration="80000" />
+      <workItem from="1773160128360" duration="123000" />
+      <workItem from="1773160312681" duration="264000" />
+      <workItem from="1773161164056" duration="6532000" />
+      <workItem from="1773341902726" duration="1768000" />
+      <workItem from="1773346183505" duration="102000" />
+      <workItem from="1773418396289" duration="985000" />
+      <workItem from="1773419394992" duration="544000" />
+      <workItem from="1773419972710" duration="550000" />
+      <workItem from="1773421141027" duration="270000" />
+      <workItem from="1773429092316" duration="2415000" />
+      <workItem from="1773431533745" duration="211000" />
+      <workItem from="1773431757146" duration="304000" />
+      <workItem from="1773432081634" duration="330000" />
+      <workItem from="1773432422460" duration="13000" />
+      <workItem from="1773432454726" duration="49000" />
+      <workItem from="1773502606789" duration="28000" />
+      <workItem from="1773503264231" duration="16000" />
+      <workItem from="1773503301535" duration="55000" />
+      <workItem from="1773503368452" duration="44000" />
+      <workItem from="1773503611029" duration="46000" />
+      <workItem from="1773503713528" duration="378000" />
+      <workItem from="1773504109951" duration="51000" />
+      <workItem from="1773504170696" duration="138000" />
+      <workItem from="1773504317471" duration="32000" />
+      <workItem from="1773504358501" duration="63000" />
+      <workItem from="1773504431618" duration="22000" />
+      <workItem from="1773504461352" duration="7000" />
+      <workItem from="1773504480312" duration="84000" />
+      <workItem from="1773504565423" duration="35000" />
+      <workItem from="1773505390623" duration="12000" />
+      <workItem from="1773505598927" duration="188000" />
+      <workItem from="1773505806733" duration="183000" />
+      <workItem from="1773516262079" duration="39000" />
+      <workItem from="1773566126278" duration="242000" />
+      <workItem from="1773566987658" duration="2210000" />
+      <workItem from="1773569224678" duration="440000" />
+      <workItem from="1773569760159" duration="4721000" />
+      <workItem from="1773589263436" duration="710000" />
+      <workItem from="1773590271127" duration="40000" />
+      <workItem from="1773690086512" duration="21000" />
+      <workItem from="1773820400968" duration="346000" />
+      <workItem from="1773821473546" duration="3173000" />
+    </task>
+    <task id="LOCAL-00001" summary="add heroUI">
+      <option name="closed" value="true" />
+      <created>1766928359993</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766928359993</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add heroUI">
+      <option name="closed" value="true" />
+      <created>1766928429815</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766928429815</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add heroUI">
+      <option name="closed" value="true" />
+      <created>1766929402940</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1766929402940</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add services">
+      <option name="closed" value="true" />
+      <created>1767417620939</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1767417620939</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add about price footer">
+      <option name="closed" value="true" />
+      <created>1767985634448</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1767985634448</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add about price footer">
+      <option name="closed" value="true" />
+      <created>1767986070027</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1767986070027</updated>
+    </task>
+    <task id="LOCAL-00007" summary="done">
+      <option name="closed" value="true" />
+      <created>1768650692885</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1768650692885</updated>
+    </task>
+    <task id="LOCAL-00008" summary="костыльный рабочий вариант . работает только дев режиме">
+      <option name="closed" value="true" />
+      <created>1768743527733</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1768743527733</updated>
+    </task>
+    <task id="LOCAL-00009" summary="sqlite and About to server component">
+      <option name="closed" value="true" />
+      <created>1769941432284</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1769941432284</updated>
+    </task>
+    <task id="LOCAL-00010" summary="About refactoring">
+      <option name="closed" value="true" />
+      <created>1769954209080</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1769954209080</updated>
+    </task>
+    <task id="LOCAL-00011" summary="About SQLITE">
+      <option name="closed" value="true" />
+      <created>1772296205205</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1772296205205</updated>
+    </task>
+    <task id="LOCAL-00012" summary="ref">
+      <option name="closed" value="true" />
+      <created>1773346250208</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1773346250208</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1773567041550</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1773567041550</updated>
+    </task>
+    <task id="LOCAL-00014" summary="edit conf">
+      <option name="closed" value="true" />
+      <created>1773568369905</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1773568369905</updated>
+    </task>
+    <task id="LOCAL-00015" summary="edit conf">
+      <option name="closed" value="true" />
+      <created>1773569163344</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1773569163344</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/db/seed.js" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="141" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="159" />
+                  <entry key="Table.GitHub.CommitStatus.ColumnIdWidth" value="147" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add heroUI" />
+    <MESSAGE value="add services" />
+    <MESSAGE value="add about price footer" />
+    <MESSAGE value="done" />
+    <MESSAGE value="костыльный рабочий вариант . работает только дев режиме" />
+    <MESSAGE value="About to server component" />
+    <MESSAGE value="sqlite and About to server component" />
+    <MESSAGE value="About refactoring" />
+    <MESSAGE value="About SQLITE" />
+    <MESSAGE value="ref" />
+    <MESSAGE value="refactoring" />
+    <MESSAGE value="edit conf" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit conf" />
+  </component>
+</project>

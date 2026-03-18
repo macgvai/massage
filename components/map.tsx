@@ -48,7 +48,7 @@ export default function Map({ siteConfig }: { siteConfig: SiteConfig }) {
                     <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                     <div>
                       <p className="font-semibold text-sm text-gray-900 dark:text-white">{siteConfig.name}</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-300">{address}</p>
+                      {/*<p className="text-xs text-gray-600 dark:text-gray-300">{address}</p>*/}
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         {siteConfig.contact.addressShort || address}
                       </p>

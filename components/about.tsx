@@ -104,7 +104,7 @@ export default async function About({ siteConfig }: { siteConfig: SiteConfig } )
                                     <img
                                         src={`/api${siteConfig.images?.['master-photo']}`}
                                         alt="Фото мастера"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover object-top"
                                         key={siteConfig.images?.['master-photo']} // Принудительное обновление при смене src
                                     />
                             </div>

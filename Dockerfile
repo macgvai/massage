@@ -15,7 +15,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Инициализация БД
-RUN npm run db:seed
+# RUN npm run db:seed
 
 # Сборка Next.js
 ENV NEXT_TELEMETRY_DISABLED=1
